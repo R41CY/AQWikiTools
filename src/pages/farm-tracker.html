@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/farm-tracker.css">
+    <title>AQWikiTools — Farm Tracker</title>
+</head>
+<body>
+    <nav class="top-bar">
+        <div class="top-bar-left">
+            <img src="../../assets/icons/icon48.png" alt="AQWikiTools" class="nav-logo">
+            <span class="brand-label">AQWiki<span class="brand-accent">Tools</span></span>
+            <div class="tab-links">
+                <button class="tab-link active" data-tab="todrop">
+                    <i class="fa-solid fa-skull-crossbones"></i> To Drop
+                </button>
+                <button class="tab-link" data-tab="tomerge">
+                    <i class="fa-solid fa-object-group"></i> To Merge
+                </button>
+                <button class="tab-link" data-tab="toquest">
+                    <i class="fa-solid fa-scroll"></i> To Quest
+                </button>
+                <button class="tab-link" data-tab="inbank">
+                    <i class="fa-solid fa-vault"></i> In Bank
+                </button>
+                <button class="tab-link" data-tab="completed">
+                    <i class="fa-solid fa-trophy"></i> Completed
+                </button>
+            </div>
+        </div>
+        <div class="top-stats">
+            <span class="stat-pill" id="stats-left"><i class="fa-solid fa-bag-shopping"></i> Account: <strong>0</strong></span>
+            <span class="stat-pill" id="stats-right"><i class="fa-solid fa-eye"></i> Showing: <strong>0</strong></span>
+        </div>
+    </nav>
+
+    <div class="filter-bar">
+        <div class="filter-left">
+            <label class="filter-pill" title="Normal (Non-AC, Non-Legend)">
+                <input id="filter-normal" type="checkbox" checked>
+                <span><i class="fa-solid fa-shield-halved"></i> Normal</span>
+            </label>
+            <label class="filter-pill" title="AC Tagged Items">
+                <input id="filter-ac" type="checkbox" checked>
+                <span><i class="fa-solid fa-gem"></i> AC</span>
+            </label>
+            <label class="filter-pill" title="Legend-Only Items">
+                <input id="filter-legend" type="checkbox" checked>
+                <span><i class="fa-solid fa-crown"></i> Legend</span>
+            </label>
+            <label class="filter-pill" title="Seasonal Items">
+                <input id="filter-seasonal" type="checkbox" checked>
+                <span><i class="fa-solid fa-snowflake"></i> Seasonal</span>
+            </label>
+            <label class="filter-pill bank-filter" hidden title="Rare Items">
+                <input id="filter-rare" type="checkbox">
+                <span><i class="fa-solid fa-trophy"></i> Rare</span>
+            </label>
+            <label class="filter-pill bank-filter" hidden title="Pseudo-Rare Items">
+                <input id="filter-pseudo-rare" type="checkbox">
+                <span><i class="fa-solid fa-star"></i> Pseudo Rare</span>
+            </label>
+        </div>
+        <div class="filter-right">
+            <select id="grid-size-select" class="grid-select" title="Grid Size">
+                <option value="compact">Compact</option>
+                <option value="medium" selected>Medium</option>
+                <option value="large">Large</option>
+            </select>
+            <div class="search-wrapper">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="search" id="search-input" class="search-input" placeholder="Search items, shops, quests...">
+            </div>
+        </div>
+    </div>
+
+    <div id="tab-todrop" class="tab-content active">
+        <div id="todrop-grid" class="item-grid"></div>
+        <div id="todrop-pagination" class="pagination-controls"></div>
+    </div>
+
+    <div id="tab-tomerge" class="tab-content">
+        <div id="tomerge-wrap"></div>
+        <div id="tomerge-pagination" class="pagination-controls"></div>
+    </div>
+
+    <div id="tab-toquest" class="tab-content">
+        <div id="toquest-wrap"></div>
+        <div id="toquest-pagination" class="pagination-controls"></div>
+    </div>
+
+    <div id="tab-inbank" class="tab-content">
+        <div id="inbank-grid" class="item-grid"></div>
+        <div id="inbank-pagination" class="pagination-controls"></div>
+    </div>
+
+    <div id="tab-completed" class="tab-content">
+        <div id="completed-wrap"></div>
+    </div>
+
+    <div id="item-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <div id="modal-title" class="modal-title">Item</div>
+                    <div id="modal-tags" class="modal-tags"></div>
+                </div>
+                <button id="modal-close" class="modal-close" type="button">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-left">
+                    <div id="modal-image-tabs" class="modal-image-tabs" hidden></div>
+                    <img id="modal-image" class="modal-image" alt="Item image">
+                </div>
+                <div class="modal-right">
+                    <div id="modal-description" class="modal-section"></div>
+                    <div id="modal-price" class="modal-section"></div>
+                    <div id="modal-location" class="modal-section"></div>
+                    <div id="modal-requirements" class="modal-section"></div>
+                    <div id="modal-flags" class="modal-section"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <span id="modal-slug" class="modal-slug"></span>
+                <a id="modal-wiki-link" class="modal-wiki-btn" href="#" target="_blank" rel="noreferrer">
+                    <i class="fa-solid fa-book-open"></i> Open Wiki
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="source-tooltip" class="source-tooltip" hidden></div>
+
+    <script src="../scripts/farm-tracker.js"></script>
+</body>
+</html>

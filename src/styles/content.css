@@ -1,0 +1,512 @@
+/* ========================================
+   AQWikiTools — Content Script Stylesheet
+   Injected on aqwwiki.wikidot.com & account.aq.com
+   ======================================== */
+
+/* ---- Wiki Dark Theme ---- */
+body.tema-escuro-wiki {
+    background-color: #141414 !important;
+    color: #cccccc !important;
+}
+
+body.tema-escuro-wiki #side-bar {
+    border-color: #333333 !important;
+}
+body.tema-escuro-wiki #side-bar a {
+    color: #b6b6b6 !important;
+}
+
+body.tema-escuro-wiki h1,
+body.tema-escuro-wiki h2,
+body.tema-escuro-wiki h3 {
+    color: #f0f0f0 !important;
+}
+body.tema-escuro-wiki #page-title {
+    color: #ff6b6b !important;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+body.tema-escuro-wiki a {
+    color: #ff6b6b;
+}
+body.tema-escuro-wiki .yui-nav a {
+    background-color: #1e1e1e !important;
+    border-color: #333333 !important;
+    color: #ff6b6b !important;
+}
+
+body.tema-escuro-wiki a:hover {
+    color: #ff9999 !important;
+    background-color: #4d4d4d;
+}
+
+body.tema-escuro-wiki table,
+body.tema-escuro-wiki .yui-content,
+body.tema-escuro-wiki table th,
+body.tema-escuro-wiki table td {
+    border-color: #333333 !important;
+    background-color: #1e1e1e !important;
+}
+#top-bar {
+    background-color: #1e1e1e !important;
+    border-color: #333333 !important;
+}
+body.tema-escuro-wiki #top-bar a {
+    color: #b6b6b6 !important;
+}
+
+/* ---- Char Page Dark Theme ---- */
+body.tema-escuro-char .img-fluid {
+    display: none;
+}
+body.tema-escuro-char .text-dark.p-1.rounded {
+    background-color: #1e1e1e !important;
+    border-color: #333333 !important;
+    color: #cccccc !important;
+}
+body.tema-escuro-char .card-body {
+    background-color: #111111;
+}
+body.tema-escuro-char .card-body a {
+    color: #ff6b6b !important;
+}
+body.tema-escuro-char .card-body a.aqwt-owned-link {
+    color: #4ade80 !important;
+}
+body.tema-escuro-char .card,
+body.tema-escuro-char .card-header {
+    background-color: #1e1e1e !important;
+    border-color: #333333 !important;
+    color: #cccccc !important;
+}
+
+/* ---- Page Title layout ---- */
+#page-title {
+    display: flex;
+    align-items: center;
+    height: auto;
+    gap: .5rem;
+}
+
+/* ---- Boost Banner ---- */
+#aqw-boost-banner {
+    color: #f0f0f0;
+    background: linear-gradient(135deg, #1a1520, #16213e, #1a1a2e);
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-size: .8rem;
+    font-weight: bold;
+    text-align: center;
+    margin-left: auto;
+    border: 1px solid rgba(241, 196, 15, 0.2);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+#aqw-boost-banner img {
+    width: 28px;
+    height: 28px;
+    vertical-align: middle;
+    margin-right: 6px;
+    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.3));
+}
+
+.aqwt-boost-text {
+    font-weight: normal;
+}
+
+/* ========================================
+   HOVER PREVIEW TOOLTIP
+   Positioned tooltip for item hover previews.
+   Text colors are overridden to ensure
+   readability against the dark background.
+   ======================================== */
+
+.content-view {
+    display: none;
+}
+
+.content-view.visible {
+    position: fixed;
+    z-index: 10000;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 20px;
+    left: auto;
+    width: 340px;
+    max-height: 80vh;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: #1a1a2e;
+    color: #f0f0f0;
+    font-size: .90rem;
+    border-radius: 12px;
+    border: 1px solid #2a2a4a;
+    border-top: 3px solid #ff6b6b;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7),
+                0 0 0 1px rgba(255, 107, 107, 0.1);
+    pointer-events: none;
+    animation: tooltipFadeIn 0.2s ease-out;
+    overflow: hidden;
+}
+
+.content-view.visible::after {
+    content: "AQWikiTools";
+    display: block;
+    padding: 6px 16px;
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.2);
+    text-align: right;
+    letter-spacing: 0.5px;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+@keyframes tooltipFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50%) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(-50%) scale(1);
+    }
+}
+
+/* Image area */
+.content-view .img-container {
+    display: flex;
+    width: 100%;
+    background: #111122;
+    border-bottom: 1px solid #2a2a4a;
+    max-height: 220px;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-view .img-add.img-multiple {
+    width: 50%;
+    max-height: 220px;
+    object-fit: contain;
+}
+
+.content-view .img-add.img-single {
+    width: 100%;
+    max-height: 220px;
+    object-fit: contain;
+}
+
+/*
+ * Tooltip body text — overrides inherited page
+ * colors to maintain contrast on the dark panel.
+ */
+.content-view p,
+.content-view span,
+.content-view strong,
+.content-view b,
+.content-view em,
+.content-view i {
+    color: #e8e8f0 !important;
+    line-height: 1.7;
+}
+
+.content-view > p {
+    padding: 14px 16px;
+    margin: 0;
+    font-size: 0.88rem;
+    background: #1a1a2e;
+}
+
+/* Make labels like "Location:" and "Price:" stand out */
+.content-view p strong,
+.content-view p b {
+    color: #ff9f7f !important;
+    font-weight: 700;
+}
+
+/* Links inside the tooltip description */
+.content-view p a {
+    color: #7eb8ff !important;
+    text-decoration: underline;
+    text-decoration-color: rgba(126, 184, 255, 0.3);
+    text-underline-offset: 2px;
+}
+.content-view p a:hover {
+    color: #aad0ff !important;
+}
+
+/* ============================================
+   CALCULATOR
+   ============================================ */
+.aqwt-calc {
+    background: #12121e;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-left: 3px solid #ff6b6b;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    color: #ccc;
+    font-size: 14px;
+}
+
+.aqwt-calc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 14px 18px;
+    background: linear-gradient(135deg, rgba(255, 107, 107, 0.08) 0%, rgba(93, 173, 226, 0.04) 100%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.aqwt-calc-title {
+    color: #ff6b6b;
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.aqwt-calc-quest-name {
+    color: #f1c40f;
+}
+
+.aqwt-calc-subtitle {
+    font-size: 0.85rem;
+    color: #999;
+    font-weight: 400;
+}
+
+.aqwt-calc-count {
+    color: #5dade2;
+}
+
+.aqwt-calc-body {
+    padding: 16px 18px;
+}
+
+.aqwt-calc-filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    margin-bottom: 14px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 8px;
+    font-size: 0.88rem;
+}
+
+.aqwt-calc-filters-label {
+    color: #888;
+    font-weight: 600;
+}
+
+.aqwt-calc-filter-opt {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #bbb;
+}
+
+.aqwt-calc-filter-opt input[type="checkbox"] {
+    accent-color: #ff6b6b;
+}
+
+.aqwt-quest-input {
+    width: 65px;
+    background: #0a0a14;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 6px;
+    padding: 5px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.aqwt-quest-input:focus {
+    border-color: #ff6b6b;
+}
+
+.aqwt-calc-progress-label {
+    font-size: 0.88rem;
+    margin-bottom: 6px;
+    color: #bbb;
+}
+
+.aqwt-progress-bar {
+    width: 100%;
+    height: 22px;
+    border-radius: 11px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.06);
+    margin-bottom: 16px;
+}
+
+.aqwt-progress-fill {
+    height: 100%;
+    border-radius: 11px;
+    background: linear-gradient(90deg, #ff6b6b, #ffaa00);
+    text-align: center;
+    color: #000;
+    font-weight: 700;
+    font-size: 11px;
+    line-height: 22px;
+    transition: width 0.4s ease;
+    min-width: 28px;
+}
+
+.aqwt-progress-fill.complete {
+    background: linear-gradient(90deg, #2ecc71, #5dde9e);
+}
+
+.aqwt-calc-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.aqwt-calc-table thead tr {
+    border-bottom: 2px solid rgba(255, 255, 255, 0.08);
+}
+
+.aqwt-calc-table th {
+    padding: 8px 6px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.aqwt-calc-table th:first-child {
+    text-align: left;
+}
+
+.aqwt-calc-table th:not(:first-child) {
+    text-align: center;
+}
+
+.aqwt-calc-table tbody tr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    transition: background 0.15s;
+}
+
+.aqwt-calc-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.aqwt-calc-table tbody tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.015);
+}
+
+.aqwt-cell-name {
+    padding: 10px 6px;
+    color: #e0e0e0;
+}
+
+.aqwt-cell-center {
+    text-align: center;
+    padding: 10px 6px;
+    font-weight: 600;
+}
+
+.aqwt-cell-have {
+    color: #5dade2;
+}
+
+.aqwt-cell-ready {
+    color: #2ecc71;
+    font-weight: 700;
+}
+
+.aqwt-cell-missing {
+    color: #ff6b6b;
+    font-weight: 700;
+}
+
+.aqwt-calc-empty {
+    text-align: center;
+    padding: 20px;
+    color: #888;
+}
+
+.aqwt-calc-complete {
+    text-align: center;
+    padding: 24px 16px;
+}
+
+.aqwt-calc-complete h2 {
+    color: #2ecc71;
+    margin: 0 0 6px;
+    font-size: 1.2rem;
+}
+
+.aqwt-calc-complete p {
+    color: #999;
+    margin: 0;
+    font-size: 0.88rem;
+}
+
+/* ---- Collection Chest Tracker ---- */
+.aqwt-chest-progress {
+    background: #12121e;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-left: 3px solid #5dade2;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    color: #ccc;
+}
+
+.aqwt-chest-title {
+    color: #e0e0e0;
+    font-size: 1rem;
+}
+
+.aqwt-chest-counts {
+    font-size: 0.92rem;
+    color: #999;
+}
+
+/* ---- Ownership Badges ---- */
+.aqwt-owned-link {
+    color: #20a754 !important;
+}
+
+.aqwt-owned-badge {
+    font-size: 0.9em;
+    display: inline;
+    color: #4ade80 !important;
+    font-weight: 600;
+}
+
+.aqwt-owned-icon {
+    width: 26px;
+    height: 26px;
+    vertical-align: middle;
+    margin-left: 2px;
+}
+
+/* ---- Misc ---- */
+.img-icon {
+    width: 4rem;
+}
+
+@media screen and (max-width: 1360px) {
+    .content-view.visible {
+        right: 10px;
+        left: auto;
+        width: 300px;
+    }
+}

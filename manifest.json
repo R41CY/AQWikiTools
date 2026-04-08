@@ -1,0 +1,57 @@
+{
+    "manifest_version": 3,
+    "name": "AQWikiTools",
+    "version": "3.0.0",
+    "description": "Enhances the AQW Wiki and account pages with item previews, merge/quest calculators, inventory tracking, farm lists, and server boost alerts.",
+    "permissions": ["storage"],
+    "host_permissions": [
+        "https://www.artix.com/*"
+    ],
+    "action": {
+        "default_popup": "src/pages/popup.html"
+    },
+    "content_scripts": [
+        {
+            "matches": ["*://aqwwiki.wikidot.com/*"],
+            "css": ["src/styles/content.css"],
+            "js": ["src/scripts/content.js"]
+        },
+        {
+            "matches": ["*://account.aq.com/*"],
+            "css": ["src/styles/content.css"],
+            "js": ["src/scripts/content.js", "src/scripts/inventory-sync.js"]
+        }
+    ],
+    "background": {
+        "service_worker": "src/scripts/background.js"
+    },
+    "content_security_policy": {
+        "extension_pages": "script-src 'self'; object-src 'self'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src https://cdnjs.cloudflare.com https://fonts.gstatic.com"
+    },
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "assets/images/banner.png",
+                "data/WikiItems.json",
+                "data/merge_shops.json",
+                "data/quests.json",
+                "data/locations.json",
+                "assets/images/bank.png",
+                "assets/images/inventory.png",
+                "assets/images/gold-boost.png",
+                "assets/images/xp-boost.png",
+                "assets/images/rep-boost.png",
+                "assets/images/class-boost.png"
+            ],
+            "matches": [
+                "*://aqwwiki.wikidot.com/*",
+                "*://account.aq.com/*"
+            ]
+        }
+    ],
+    "icons": {
+        "16": "assets/icons/icon16.png",
+        "48": "assets/icons/icon48.png",
+        "128": "assets/icons/icon128.png"
+    }
+}

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="../styles/popup.css">
+        <title>AQWikiTools</title>
+    </head>
+    <body>
+        <main class="popup">
+            <!-- Header -->
+            <div class="popup-header">
+                <div class="logo-row">
+                    <img src="../../assets/images/logo.png" alt="AQWikiTools" class="logo-icon">
+                    <div>
+                        <span class="logo-text">AQWiki<span class="logo-accent">Tools</span></span>
+                        <span class="version" id="ext-version"></span>
+                    </div>
+                </div>
+                <p class="tagline">Enhance your AQW Wiki experience</p>
+            </div>
+
+            <!-- Sync Status -->
+            <section class="section" id="sync-section">
+                <div class="section-header">
+                    <i class="fa-solid fa-box-open section-icon"></i>
+                    <span class="section-title">Inventory Sync</span>
+                </div>
+                <div class="sync-info">
+                    <div class="sync-row">
+                        <span class="sync-label">Items synced</span>
+                        <span class="sync-value" id="synced-count">--</span>
+                    </div>
+                    <div class="sync-row">
+                        <span class="sync-label">Status</span>
+                        <span class="sync-value sync-status" id="sync-status">
+                            <i class="fa-solid fa-circle-xmark"></i> Not synced
+                        </span>
+                    </div>
+                </div>
+                <a href="https://account.aq.com/AQW/Inventory" target="_blank" class="sync-link">
+                    Sync inventory on account page <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <button id="btn-export" class="btn-action" style="width:100%;margin-top:8px;justify-content:center;">
+                    <i class="fa-solid fa-file-export btn-icon"></i>
+                    Export Account Data
+                </button>
+            </section>
+
+            <!-- Quick Links -->
+            <section class="section">
+                <div class="section-header">
+                    <i class="fa-solid fa-bolt section-icon"></i>
+                    <span class="section-title">Quick Links</span>
+                </div>
+                <div class="quick-links">
+                    <button id="btn-tofarm" class="btn-action btn-primary">
+                        <i class="fa-solid fa-list-check btn-icon"></i>
+                        Farm Tracker
+                    </button>
+                    <a href="http://aqwwiki.wikidot.com/" target="_blank" class="btn-action">
+                        <i class="fa-solid fa-book btn-icon"></i>
+                        AQW Wiki
+                    </a>
+                </div>
+            </section>
+
+            <!-- Settings -->
+            <section class="section">
+                <div class="section-header">
+                    <i class="fa-solid fa-gear section-icon"></i>
+                    <span class="section-title">Settings</span>
+                </div>
+                <label class="toggle-row" for="wiki-dark">
+                    <div class="toggle-info">
+                        <i class="fa-solid fa-moon toggle-info-icon"></i>
+                        <span class="toggle-label">Wiki Dark Mode</span>
+                    </div>
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="wiki-dark">
+                        <span class="toggle-slider"></span>
+                    </div>
+                </label>
+                <label class="toggle-row" for="char-dark">
+                    <div class="toggle-info">
+                        <i class="fa-solid fa-user-astronaut toggle-info-icon"></i>
+                        <span class="toggle-label">Character Page Dark Mode</span>
+                    </div>
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="char-dark">
+                        <span class="toggle-slider"></span>
+                    </div>
+                </label>
+                <label class="toggle-row" for="hover-preview">
+                    <div class="toggle-info">
+                        <i class="fa-solid fa-image toggle-info-icon"></i>
+                        <span class="toggle-label">Hover Image Preview</span>
+                    </div>
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="hover-preview" checked>
+                        <span class="toggle-slider"></span>
+                    </div>
+                </label>
+            </section>
+
+            <!-- Active Boosts -->
+            <section class="section" id="boost-section" style="display:none;">
+                <div class="section-header">
+                    <i class="fa-solid fa-fire section-icon boost-icon"></i>
+                    <span class="section-title">Active Boosts</span>
+                </div>
+                <div class="boost-info" id="boost-info"></div>
+            </section>
+
+            <!-- About -->
+            <section class="section about-section">
+                <button class="about-toggle" id="about-toggle">
+                    <i class="fa-solid fa-circle-info"></i> About AQWikiTools
+                </button>
+                <div class="about-content" id="about-content">
+                    <p>AQWikiTools enhances the AQW Wiki browsing experience with item previews, calculators, inventory tracking, and more.</p>
+                    <p class="credit">Inspired by the <strong>Wiki Image</strong> and <strong>AqwDoIhave</strong> projects. Credit to their respective creators for the original concepts and data.</p>
+                    <div class="about-links">
+                        <a href="https://wikiimage.vercel.app/" target="_blank">
+                            <i class="fa-solid fa-globe"></i> Wiki Image
+                        </a>
+                        <a href="https://github.com/DragoNext/AqwDoIhave" target="_blank">
+                            <i class="fa-brands fa-github"></i> AqwDoIhave
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <script src="../scripts/popup.js"></script>
+    </body>
+</html>
