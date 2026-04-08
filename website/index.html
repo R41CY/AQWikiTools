@@ -26,33 +26,61 @@
             <div class="nav-links" id="nav-links">
                 <a href="#features">Features</a>
                 <a href="#install">Install</a>
+                <a href="#trust">Safety</a>
                 <a href="#credits">Credits</a>
                 <a href="https://github.com/R41CY/AQWikiTools" target="_blank" class="nav-github">
                     <i class="fa-brands fa-github"></i> GitHub
                 </a>
-                <a href="https://www.aq.com/play-now/aqw.htm" target="_blank" class="nav-cta">
+                <a href="https://www.aq.com/play-now/" target="_blank" class="nav-cta">
                     <i class="fa-solid fa-gamepad"></i> Play AQW
                 </a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero with banner background -->
+    <!-- Hero -->
     <header class="hero" id="hero">
         <div class="hero-bg" style="background-image: url('assets/banner.png')"></div>
         <div class="hero-overlay"></div>
         <div class="hero-gradient-anim"></div>
+        <div class="hero-particles" id="hero-particles"></div>
         <div class="hero-content">
             <div class="hero-logo-wrap">
                 <img src="assets/logo.png" alt="AQWikiTools Logo" class="hero-logo">
             </div>
             <h1 class="hero-title">AQWiki<span class="accent">Tools</span></h1>
-            <p class="hero-subtitle">A Chrome extension that supercharges the AQW Wiki with item previews, calculators, inventory tracking, dark mode, and more.</p>
+            <p class="hero-subtitle">
+                A Chrome extension that supercharges the AQW Wiki with
+                <span class="typed-wrap"><span class="typed" id="typed-text"></span><span class="typed-cursor">|</span></span>
+            </p>
             <div class="hero-buttons">
-                <a href="https://github.com/R41CY/AQWikiTools/archive/refs/heads/main.zip" class="btn btn-primary" id="download-btn"><i class="fa-solid fa-download"></i> Download Extension</a>
+                <a href="https://github.com/R41CY/AQWikiTools/archive/refs/heads/main.zip" class="btn btn-primary btn-glow" id="download-btn">
+                    <i class="fa-solid fa-download"></i> Download Extension
+                    <span class="btn-badge">v3.0</span>
+                </a>
                 <a href="#install" class="btn btn-secondary"><i class="fa-solid fa-puzzle-piece"></i> Install Guide</a>
                 <a href="#features" class="btn btn-outline"><i class="fa-solid fa-star"></i> View Features</a>
             </div>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="hero-stat-num" data-count="11">0</span>
+                    <span class="hero-stat-label">Features</span>
+                </div>
+                <div class="hero-stat-divider"></div>
+                <div class="hero-stat">
+                    <span class="hero-stat-num" data-count="7">0</span>
+                    <span class="hero-stat-label">Easy Steps</span>
+                </div>
+                <div class="hero-stat-divider"></div>
+                <div class="hero-stat">
+                    <span class="hero-stat-num" data-count="2">0</span>
+                    <span class="hero-stat-label">Min Setup</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-scroll-hint" id="scroll-hint">
+            <span>Scroll to explore</span>
+            <i class="fa-solid fa-chevron-down"></i>
         </div>
     </header>
 
@@ -62,172 +90,292 @@
             <h2 class="section-title">Features</h2>
             <p class="section-subtitle">Everything you need to enhance your AQW Wiki browsing experience.</p>
 
-            <div class="features-grid">
-                <div class="feature-card" data-lightbox="assets/screenshots/feature-popup.png">
+            <div class="feature-filters" id="feature-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="ui">UI & Themes</button>
+                <button class="filter-btn" data-filter="tracker">Farm Tracker</button>
+                <button class="filter-btn" data-filter="tools">Tools</button>
+            </div>
+
+            <div class="features-grid" id="features-grid">
+                <div class="feature-card" data-lightbox="assets/screenshots/feature-popup.png" data-category="ui">
                     <div class="feature-img-wrap">
                         <img src="assets/screenshots/feature-popup.png" alt="Extension Popup" class="feature-img" loading="lazy">
                         <div class="feature-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
                     </div>
-                    <h3>Extension Popup</h3>
-                    <p>Quick access to inventory sync status, settings, dark mode toggles, and the Farm Tracker from one clean popup.</p>
+                    <div class="feature-body">
+                        <span class="feature-tag tag-ui">UI</span>
+                        <h3>Extension Popup</h3>
+                        <p>Quick access to inventory sync status, settings, dark mode toggles, and the Farm Tracker from one clean popup.</p>
+                    </div>
                 </div>
 
-                <div class="feature-card" data-lightbox="assets/screenshots/feature-popup-2.png">
+                <div class="feature-card" data-lightbox="assets/screenshots/feature-popup-2.png" data-category="ui">
                     <div class="feature-img-wrap">
                         <img src="assets/screenshots/feature-popup-2.png" alt="Settings &amp; Active Boosts" class="feature-img" loading="lazy">
                         <div class="feature-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
                     </div>
-                    <h3>Settings &amp; Active Boosts</h3>
-                    <p>Toggle dark mode, image previews, and character page settings. See your active server boosts and access quick links to the Farm Tracker and AQW Wiki.</p>
+                    <div class="feature-body">
+                        <span class="feature-tag tag-ui">UI</span>
+                        <h3>Settings &amp; Active Boosts</h3>
+                        <p>Toggle dark mode, image previews, and character page settings. See your active server boosts at a glance.</p>
+                    </div>
                 </div>
 
-                <div class="feature-card" data-lightbox="assets/screenshots/feature-dark-mode.png">
+                <div class="feature-card" data-lightbox="assets/screenshots/feature-dark-mode.png" data-category="ui">
                     <div class="feature-img-wrap">
                         <img src="assets/screenshots/feature-dark-mode.png" alt="Dark Mode &amp; Owned Items" class="feature-img" loading="lazy">
                         <div class="feature-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
                     </div>
-                    <h3>Dark Mode &amp; Owned Items</h3>
-                    <p>Full wiki dark mode with owned item highlighting &mdash; items you own are color-coded with bank icons right on the page.</p>
+                    <div class="feature-body">
+                        <span class="feature-tag tag-ui">UI</span>
+                        <h3>Dark Mode &amp; Owned Items</h3>
+                        <p>Full wiki dark mode with owned item highlighting &mdash; color-coded with bank icons right on the page.</p>
+                    </div>
                 </div>
 
-                <div class="feature-card" data-lightbox="assets/screenshots/feature-image-preview.png">
+                <div class="feature-card" data-lightbox="assets/screenshots/feature-image-preview.png" data-category="tools">
                     <div class="feature-img-wrap">
                         <img src="assets/screenshots/feature-image-preview.png" alt="Hover Image Preview" class="feature-img" loading="lazy">
                         <div class="feature-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
                     </div>
-                    <h3>Hover Image Preview</h3>
-                    <p>Hover over any item to see a detailed preview with location, rarity, price, and description instantly.</p>
+                    <div class="feature-body">
+                        <span class="feature-tag tag-tools">Tool</span>
+                        <h3>Hover Image Preview</h3>
+                        <p>Hover over any item to see a detailed preview with location, rarity, price, and description instantly.</p>
+                    </div>
                 </div>
 
-                <div class="feature-card" data-lightbox="assets/screenshots/feature-quest-calculator.png">
+                <div class="feature-card" data-lightbox="assets/screenshots/feature-quest-calculator.png" data-category="tools">
                     <div class="feature-img-wrap">
                         <img src="assets/screenshots/feature-quest-calculator.png" alt="Quest Calculator" class="feature-img" loading="lazy">
                         <div class="feature-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
                     </div>
-                    <h3>Quest Calculator</h3>
-                    <p>Track quest progress with a live progress bar, showing needed vs. owned materials and what's still missing.</p>
+                    <div class="feature-body">
+                        <span class="feature-tag tag-tools">Tool</span>
+                        <h3>Quest Calculator</h3>
+                        <p>Track quest progress with a live progress bar, showing needed vs. owned materials and what's still missing.</p>
+                    </div>
                 </div>
 
-                <div class="feature-card" data-lightbox="assets/screenshots/feature-tofarm.png">
+                <div class="feature-card" data-lightbox="assets/screenshots/feature-tofarm.png" data-category="tracker">
                     <div class="feature-img-wrap">
                         <img src="assets/screenshots/feature-tofarm.png" alt="Farm Tracker — To Drop" class="feature-img" loading="lazy">
                         <div class="feature-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
                     </div>
-                    <h3>Farm Tracker &mdash; To Drop</h3>
-                    <p>Browse all unowned drop items in a filterable card grid with rarity filters, search, and drop source info.</p>
+                    <div class="feature-body">
+                        <span class="feature-tag tag-tracker">Tracker</span>
+                        <h3>Farm Tracker &mdash; To Drop</h3>
+                        <p>Browse all unowned drop items in a filterable card grid with rarity filters, search, and drop source info.</p>
+                    </div>
                 </div>
 
-                <div class="feature-card" data-lightbox="assets/screenshots/feature-farm-detail.png">
+                <div class="feature-card" data-lightbox="assets/screenshots/feature-farm-detail.png" data-category="tracker">
                     <div class="feature-img-wrap">
                         <img src="assets/screenshots/feature-farm-detail.png" alt="Item Detail Modal" class="feature-img" loading="lazy">
                         <div class="feature-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
                     </div>
-                    <h3>Item Detail &amp; Source Preview</h3>
-                    <p>Click any item for a detailed view with description and drop sources. Hover a source to preview the monster image and location.</p>
+                    <div class="feature-body">
+                        <span class="feature-tag tag-tracker">Tracker</span>
+                        <h3>Item Detail &amp; Source Preview</h3>
+                        <p>Click any item for a detailed view with description and drop sources. Hover a source to preview the monster.</p>
+                    </div>
                 </div>
 
-                <div class="feature-card" data-lightbox="assets/screenshots/feature-tomerge.png">
+                <div class="feature-card" data-lightbox="assets/screenshots/feature-tomerge.png" data-category="tracker">
                     <div class="feature-img-wrap">
                         <img src="assets/screenshots/feature-tomerge.png" alt="Farm Tracker — To Merge" class="feature-img" loading="lazy">
                         <div class="feature-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
                     </div>
-                    <h3>Farm Tracker &mdash; To Merge</h3>
-                    <p>See all unowned merge shop items grouped by shop, with NEEDED badges and ownership progress per shop.</p>
+                    <div class="feature-body">
+                        <span class="feature-tag tag-tracker">Tracker</span>
+                        <h3>Farm Tracker &mdash; To Merge</h3>
+                        <p>See all unowned merge shop items grouped by shop, with NEEDED badges and ownership progress per shop.</p>
+                    </div>
                 </div>
 
-                <div class="feature-card" data-lightbox="assets/screenshots/feature-bank-inv.png">
+                <div class="feature-card" data-lightbox="assets/screenshots/feature-bank-inv.png" data-category="tracker">
                     <div class="feature-img-wrap">
                         <img src="assets/screenshots/feature-bank-inv.png" alt="Bank View" class="feature-img" loading="lazy">
                         <div class="feature-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
                     </div>
-                    <h3>In Bank View</h3>
-                    <p>View all your banked items in a beautiful card grid with IN BANK badges, rarity tags, and source info.</p>
+                    <div class="feature-body">
+                        <span class="feature-tag tag-tracker">Tracker</span>
+                        <h3>In Bank View</h3>
+                        <p>View all your banked items in a beautiful card grid with IN BANK badges, rarity tags, and source info.</p>
+                    </div>
                 </div>
 
-                <div class="feature-card" data-lightbox="assets/screenshots/feature-completed.png">
+                <div class="feature-card" data-lightbox="assets/screenshots/feature-completed.png" data-category="tracker">
                     <div class="feature-img-wrap">
                         <img src="assets/screenshots/feature-completed.png" alt="Collection Stats" class="feature-img" loading="lazy">
                         <div class="feature-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
                     </div>
-                    <h3>Collection Stats</h3>
-                    <p>Track your overall completion with donut charts for Non-Rare, AC, and Seasonal item categories.</p>
+                    <div class="feature-body">
+                        <span class="feature-tag tag-tracker">Tracker</span>
+                        <h3>Collection Stats</h3>
+                        <p>Track your overall completion with donut charts for Non-Rare, AC, and Seasonal item categories.</p>
+                    </div>
                 </div>
 
-                <div class="feature-card" data-lightbox="assets/screenshots/feature-manage-account.png">
+                <div class="feature-card" data-lightbox="assets/screenshots/feature-manage-account.png" data-category="tools">
                     <div class="feature-img-wrap">
                         <img src="assets/screenshots/feature-manage-account.png" alt="Character Page Owned Items" class="feature-img" loading="lazy">
                         <div class="feature-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
                     </div>
-                    <h3>Character Page Compare</h3>
-                    <p>When viewing another player's character page, an <span class="owned-tag">[Owned]</span> tag appears next to items you also own &mdash; quickly compare inventories at a glance.</p>
+                    <div class="feature-body">
+                        <span class="feature-tag tag-tools">Tool</span>
+                        <h3>Character Page Compare</h3>
+                        <p>When viewing another player's character page, an <span class="owned-tag">[Owned]</span> tag appears next to items you also own.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Installation Guide -->
+    <!-- Installation Guide — Interactive Wizard -->
     <section id="install" class="section section-dark">
         <div class="container">
-            <h2 class="section-title">Installation Guide</h2>
-            <p class="section-subtitle">Install AQWikiTools in Chrome in under 2 minutes.</p>
+            <h2 class="section-title">Get Started</h2>
+            <p class="section-subtitle">Install AQWikiTools in Chrome in under 2 minutes. Click through each step.</p>
 
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
+            <div class="wizard" id="wizard">
+                <div class="wizard-progress">
+                    <div class="wizard-progress-bar" id="wizard-bar"></div>
+                    <div class="wizard-dots" id="wizard-dots">
+                        <button class="wizard-dot active" data-step="0"><span>1</span></button>
+                        <button class="wizard-dot" data-step="1"><span>2</span></button>
+                        <button class="wizard-dot" data-step="2"><span>3</span></button>
+                        <button class="wizard-dot" data-step="3"><span>4</span></button>
+                        <button class="wizard-dot" data-step="4"><span>5</span></button>
+                        <button class="wizard-dot" data-step="5"><span>6</span></button>
+                        <button class="wizard-dot" data-step="6"><span>7</span></button>
+                    </div>
+                </div>
+
+                <div class="wizard-card" id="wizard-card">
+                    <div class="wizard-step active" data-step="0">
+                        <div class="wizard-icon"><i class="fa-solid fa-download"></i></div>
                         <h3>Download the Extension</h3>
-                        <p>Download the AQWikiTools project as a <strong>.zip</strong> file. Click the button below or visit the <a href="https://github.com/R41CY/AQWikiTools" target="_blank">GitHub repository</a>.</p>
-                        <a href="https://github.com/R41CY/AQWikiTools/archive/refs/heads/main.zip" class="btn btn-download"><i class="fa-solid fa-download"></i> Download ZIP</a>
+                        <p>Grab the ZIP file from GitHub — one click, that's it.</p>
+                        <a href="https://github.com/R41CY/AQWikiTools/archive/refs/heads/main.zip" class="btn btn-primary btn-sm">
+                            <i class="fa-solid fa-download"></i> Download ZIP
+                        </a>
                     </div>
-                </div>
 
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h3>Extract the ZIP File</h3>
-                        <p><strong>Right-click</strong> the downloaded <code>.zip</code> file and select <strong>"Extract All..."</strong> (or use 7-Zip / WinRAR). Extract it to a folder you can find easily, like your Desktop or Documents. <em>Do not skip this step</em> &mdash; Chrome cannot load a <code>.zip</code> directly.</p>
+                    <div class="wizard-step" data-step="1">
+                        <div class="wizard-icon"><i class="fa-solid fa-box-open"></i></div>
+                        <h3>Extract the ZIP</h3>
+                        <p><strong>Right-click</strong> the downloaded <code>.zip</code> &rarr; <strong>"Extract All..."</strong></p>
+                        <div class="wizard-tip">
+                            <i class="fa-solid fa-circle-info"></i>
+                            Chrome can't load a .zip directly — you need the extracted folder.
+                        </div>
                     </div>
-                </div>
 
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h3>Open Chrome Extensions</h3>
-                        <p>Open Google Chrome and navigate to <code>chrome://extensions</code> in the address bar. You can also get there via <strong>Menu &gt; More tools &gt; Extensions</strong>.</p>
+                    <div class="wizard-step" data-step="2">
+                        <div class="wizard-icon"><i class="fa-brands fa-chrome"></i></div>
+                        <h3>Open Extensions Page</h3>
+                        <p>In Chrome, go to <code>chrome://extensions</code></p>
+                        <div class="wizard-shortcut">
+                            <kbd>Menu</kbd> <i class="fa-solid fa-arrow-right"></i> <kbd>More tools</kbd> <i class="fa-solid fa-arrow-right"></i> <kbd>Extensions</kbd>
+                        </div>
                     </div>
-                </div>
 
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <div class="step-content">
+                    <div class="wizard-step" data-step="3">
+                        <div class="wizard-icon"><i class="fa-solid fa-toggle-on"></i></div>
                         <h3>Enable Developer Mode</h3>
-                        <p>In the top-right corner of the extensions page, flip the <strong>"Developer mode"</strong> toggle to <strong>ON</strong>. This allows you to load custom extensions.</p>
+                        <p>Flip the <strong>"Developer mode"</strong> toggle in the top-right corner.</p>
+                        <div class="wizard-visual">
+                            <div class="fake-toggle" id="fake-toggle">
+                                <div class="fake-toggle-knob"></div>
+                            </div>
+                            <span class="fake-toggle-label" id="fake-toggle-label">Click to try!</span>
+                        </div>
                     </div>
-                </div>
 
-                <div class="step">
-                    <div class="step-number">5</div>
-                    <div class="step-content">
-                        <h3>Load the Extension</h3>
-                        <p>Click <strong>"Load unpacked"</strong> in the top-left. Browse to the <strong>extracted folder</strong> and select the folder that contains <code>manifest.json</code> (this is the root of the extension). Click <strong>"Select Folder"</strong>.</p>
+                    <div class="wizard-step" data-step="4">
+                        <div class="wizard-icon"><i class="fa-solid fa-folder-open"></i></div>
+                        <h3>Load Unpacked</h3>
+                        <p>Click <strong>"Load unpacked"</strong> &rarr; select the extracted folder containing <code>manifest.json</code></p>
+                        <div class="wizard-tip">
+                            <i class="fa-solid fa-lightbulb"></i>
+                            Make sure you select the root folder, not a subfolder.
+                        </div>
                     </div>
-                </div>
 
-                <div class="step">
-                    <div class="step-number">6</div>
-                    <div class="step-content">
+                    <div class="wizard-step" data-step="5">
+                        <div class="wizard-icon"><i class="fa-solid fa-rotate"></i></div>
                         <h3>Sync Your Inventory</h3>
-                        <p>Go to <a href="https://account.aq.com/AQW/Inventory" target="_blank">account.aq.com/AQW/Inventory</a> while logged in to your AQW account. The extension will <strong>automatically detect and sync</strong> all your inventory and bank items. Wait for the page to fully load.</p>
+                        <p>Visit <a href="https://account.aq.com/AQW/Inventory" target="_blank">account.aq.com/AQW/Inventory</a> while logged in. The extension syncs automatically.</p>
+                        <div class="wizard-loading-demo">
+                            <div class="wizard-loading-bar">
+                                <div class="wizard-loading-fill"></div>
+                            </div>
+                            <span>Syncing items...</span>
+                        </div>
+                    </div>
+
+                    <div class="wizard-step" data-step="6">
+                        <div class="wizard-icon wizard-icon-done"><i class="fa-solid fa-check-circle"></i></div>
+                        <h3>You're All Set!</h3>
+                        <p>Visit <a href="http://aqwwiki.wikidot.com/" target="_blank">aqwwiki.wikidot.com</a> and enjoy all the features. Open the extension popup for settings and the Farm Tracker.</p>
+                        <div class="wizard-confetti" id="wizard-confetti"></div>
                     </div>
                 </div>
 
-                <div class="step">
-                    <div class="step-number">7</div>
-                    <div class="step-content">
-                        <h3>Browse the Wiki</h3>
-                        <p>Visit <a href="http://aqwwiki.wikidot.com/" target="_blank">aqwwiki.wikidot.com</a> and enjoy hover previews, merge/quest calculators, owned item markers, dark mode, and more! Open the <strong>extension popup</strong> to access settings and the Farm Tracker.</p>
-                    </div>
+                <div class="wizard-nav">
+                    <button class="btn btn-secondary btn-sm" id="wizard-prev" disabled>
+                        <i class="fa-solid fa-arrow-left"></i> Back
+                    </button>
+                    <span class="wizard-counter"><span id="wizard-current">1</span> / 7</span>
+                    <button class="btn btn-primary btn-sm" id="wizard-next">
+                        Next <i class="fa-solid fa-arrow-right"></i>
+                    </button>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust & Safety -->
+    <section id="trust" class="section">
+        <div class="container">
+            <h2 class="section-title">Open Source &amp; Safe</h2>
+            <p class="section-subtitle">No hidden code, no data collection, no shady stuff. Ever.</p>
+
+            <div class="trust-grid">
+                <div class="trust-card">
+                    <div class="trust-icon"><i class="fa-solid fa-code"></i></div>
+                    <h3>100% Open Source</h3>
+                    <p>Every single line of code is public on GitHub. Read it, fork it, improve it — it's yours under the <a href="https://github.com/R41CY/AQWikiTools/blob/main/LICENSE" target="_blank">MIT License</a>.</p>
+                </div>
+
+                <div class="trust-card">
+                    <div class="trust-icon trust-icon-green"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h3>Zero Data Collection</h3>
+                    <p>The extension stores everything locally in your browser. No servers, no analytics, no tracking. Your inventory data never leaves your machine.</p>
+                </div>
+
+                <div class="trust-card">
+                    <div class="trust-icon trust-icon-gold"><i class="fa-solid fa-lock"></i></div>
+                    <h3>Minimal Permissions</h3>
+                    <p>Only requests <code>storage</code> (to save your settings) and access to <code>artix.com</code> (to check server boosts). Nothing else.</p>
+                </div>
+
+                <div class="trust-card">
+                    <div class="trust-icon trust-icon-blue"><i class="fa-solid fa-magnifying-glass"></i></div>
+                    <h3>Verify It Yourself</h3>
+                    <p>Download the ZIP and scan it on <a href="https://www.virustotal.com/" target="_blank">VirusTotal</a> — a free tool by Google that checks files with 70+ antivirus engines. It comes back clean.</p>
+                </div>
+            </div>
+
+            <div class="trust-cta">
+                <a href="https://github.com/R41CY/AQWikiTools" target="_blank" class="btn btn-secondary btn-sm">
+                    <i class="fa-brands fa-github"></i> View Source Code
+                </a>
+                <a href="https://www.virustotal.com/" target="_blank" class="btn btn-outline btn-sm">
+                    <i class="fa-solid fa-shield-halved"></i> Scan on VirusTotal
+                </a>
             </div>
         </div>
     </section>
@@ -265,12 +413,16 @@
     </button>
 
     <script>
+    (() => {
+        /* ── Nav & scroll ── */
         const nav = document.getElementById('site-nav');
         const btt = document.getElementById('back-to-top');
+        const scrollHint = document.getElementById('scroll-hint');
 
         window.addEventListener('scroll', () => {
-            nav.classList.toggle('scrolled', window.scrollY > 60);
-            btt.hidden = window.scrollY < 400;
+            nav.classList.toggle('scrolled', scrollY > 60);
+            btt.hidden = scrollY < 400;
+            if (scrollHint) scrollHint.classList.toggle('hidden', scrollY > 100);
         }, { passive: true });
 
         document.getElementById('nav-toggle').addEventListener('click', () => {
@@ -288,7 +440,73 @@
             });
         });
 
-        /* Lightbox */
+        btt.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
+
+        /* ── Typing effect ── */
+        const phrases = ['item previews.', 'merge calculators.', 'inventory tracking.', 'dark mode.', 'farm tracking.', 'quest calculators.'];
+        const typedEl = document.getElementById('typed-text');
+        let phraseIdx = 0, charIdx = 0, deleting = false;
+
+        function typeLoop() {
+            const phrase = phrases[phraseIdx];
+            if (!deleting) {
+                typedEl.textContent = phrase.substring(0, ++charIdx);
+                if (charIdx === phrase.length) {
+                    deleting = true;
+                    setTimeout(typeLoop, 2000);
+                    return;
+                }
+                setTimeout(typeLoop, 70);
+            } else {
+                typedEl.textContent = phrase.substring(0, --charIdx);
+                if (charIdx === 0) {
+                    deleting = false;
+                    phraseIdx = (phraseIdx + 1) % phrases.length;
+                    setTimeout(typeLoop, 400);
+                    return;
+                }
+                setTimeout(typeLoop, 35);
+            }
+        }
+        typeLoop();
+
+        /* ── Counter animation ── */
+        const counterObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                const el = entry.target;
+                const target = +el.dataset.count;
+                let current = 0;
+                const step = () => {
+                    current += Math.ceil(target / 20);
+                    if (current >= target) { el.textContent = target; return; }
+                    el.textContent = current;
+                    requestAnimationFrame(step);
+                };
+                step();
+                counterObserver.unobserve(el);
+            });
+        }, { threshold: 0.5 });
+        document.querySelectorAll('[data-count]').forEach(el => counterObserver.observe(el));
+
+        /* ── Feature filters ── */
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const cards = document.querySelectorAll('.feature-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.dataset.filter;
+                cards.forEach((card, i) => {
+                    const show = filter === 'all' || card.dataset.category === filter;
+                    card.style.transitionDelay = show ? `${i * 40}ms` : '0ms';
+                    card.classList.toggle('card-hidden', !show);
+                });
+            });
+        });
+
+        /* ── Lightbox ── */
         const lightbox = document.getElementById('lightbox');
         const lbImg = document.getElementById('lightbox-img');
 
@@ -304,47 +522,150 @@
             lightbox.hidden = true;
             document.body.style.overflow = '';
         }
-
         document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
         lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
         document.addEventListener('keydown', e => { if (e.key === 'Escape' && !lightbox.hidden) closeLightbox(); });
 
-        btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-        /* Scroll-reveal: animate elements as they enter the viewport */
-        document.querySelectorAll('.feature-card').forEach((card, i) => {
-            card.classList.add('reveal');
-            card.style.setProperty('--delay', i);
+        /* ── Scroll-reveal ── */
+        document.querySelectorAll('.feature-card').forEach((c, i) => {
+            c.classList.add('reveal');
+            c.style.setProperty('--delay', i);
         });
-        document.querySelectorAll('.step').forEach(el => el.classList.add('reveal'));
-        document.querySelectorAll('.section-title, .section-subtitle').forEach(el => el.classList.add('reveal'));
+        document.querySelectorAll('.section-title, .section-subtitle, .wizard, .feature-filters').forEach(el => el.classList.add('reveal'));
+        document.querySelectorAll('.trust-card').forEach((c, i) => {
+            c.classList.add('reveal');
+            c.style.setProperty('--delay', i);
+        });
+        document.querySelectorAll('.trust-cta').forEach(el => el.classList.add('reveal'));
 
-        const revealObserver = new IntersectionObserver((entries) => {
+        const revealObs = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('revealed');
-                    revealObserver.unobserve(entry.target);
+                    revealObs.unobserve(entry.target);
                 }
             });
         }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
-        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-        /* Active nav link based on scroll position */
+        /* ── Active nav ── */
         const sections = document.querySelectorAll('section[id], footer[id]');
         const navAnchors = document.querySelectorAll('.nav-links a[href^="#"]');
-
-        const sectionObserver = new IntersectionObserver((entries) => {
+        const sectionObs = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     navAnchors.forEach(a => a.classList.remove('active'));
-                    const match = document.querySelector('.nav-links a[href="#' + entry.target.id + '"]');
-                    if (match) match.classList.add('active');
+                    const m = document.querySelector('.nav-links a[href="#' + entry.target.id + '"]');
+                    if (m) m.classList.add('active');
                 }
             });
         }, { rootMargin: '-40% 0px -55% 0px' });
+        sections.forEach(s => sectionObs.observe(s));
 
-        sections.forEach(s => sectionObserver.observe(s));
+        /* ── Installation Wizard ── */
+        const totalSteps = 7;
+        let currentStep = 0;
+        const dots = document.querySelectorAll('.wizard-dot');
+        const steps = document.querySelectorAll('.wizard-step');
+        const bar = document.getElementById('wizard-bar');
+        const prevBtn = document.getElementById('wizard-prev');
+        const nextBtn = document.getElementById('wizard-next');
+        const counter = document.getElementById('wizard-current');
+
+        function goToStep(n) {
+            steps[currentStep].classList.remove('active');
+            steps[currentStep].classList.add(n > currentStep ? 'exit-left' : 'exit-right');
+
+            currentStep = n;
+
+            steps.forEach((s, i) => {
+                if (i === currentStep) {
+                    s.classList.remove('exit-left', 'exit-right');
+                    s.classList.add('active');
+                }
+            });
+
+            setTimeout(() => {
+                steps.forEach((s, i) => {
+                    if (i !== currentStep) s.classList.remove('exit-left', 'exit-right', 'active');
+                });
+            }, 400);
+
+            dots.forEach((d, i) => {
+                d.classList.toggle('active', i === currentStep);
+                d.classList.toggle('done', i < currentStep);
+            });
+
+            bar.style.width = ((currentStep / (totalSteps - 1)) * 100) + '%';
+            counter.textContent = currentStep + 1;
+            prevBtn.disabled = currentStep === 0;
+            nextBtn.innerHTML = currentStep === totalSteps - 1
+                ? '<i class="fa-solid fa-redo"></i> Restart'
+                : 'Next <i class="fa-solid fa-arrow-right"></i>';
+
+            if (currentStep === totalSteps - 1) spawnConfetti();
+        }
+
+        nextBtn.addEventListener('click', () => {
+            if (currentStep === totalSteps - 1) goToStep(0);
+            else goToStep(currentStep + 1);
+        });
+        prevBtn.addEventListener('click', () => { if (currentStep > 0) goToStep(currentStep - 1); });
+        dots.forEach(d => d.addEventListener('click', () => goToStep(+d.dataset.step)));
+
+        /* keyboard nav for wizard */
+        document.addEventListener('keydown', e => {
+            if (lightbox && !lightbox.hidden) return;
+            const wizardEl = document.getElementById('wizard');
+            const rect = wizardEl.getBoundingClientRect();
+            const inView = rect.top < innerHeight && rect.bottom > 0;
+            if (!inView) return;
+            if (e.key === 'ArrowRight' && currentStep < totalSteps - 1) goToStep(currentStep + 1);
+            if (e.key === 'ArrowLeft' && currentStep > 0) goToStep(currentStep - 1);
+        });
+
+        /* Fun toggle interaction on step 3 */
+        const fakeToggle = document.getElementById('fake-toggle');
+        const fakeLabel = document.getElementById('fake-toggle-label');
+        if (fakeToggle) {
+            fakeToggle.addEventListener('click', () => {
+                fakeToggle.classList.toggle('on');
+                fakeLabel.textContent = fakeToggle.classList.contains('on') ? 'Developer Mode ON' : 'Click to try!';
+            });
+        }
+
+        /* Mini confetti on last step */
+        function spawnConfetti() {
+            const container = document.getElementById('wizard-confetti');
+            if (!container) return;
+            container.innerHTML = '';
+            const colors = ['#ff6b6b', '#ffd93d', '#6bcb77', '#4d96ff', '#ff8585', '#d4a853'];
+            for (let i = 0; i < 30; i++) {
+                const dot = document.createElement('span');
+                dot.className = 'confetti-dot';
+                dot.style.setProperty('--x', (Math.random() * 200 - 100) + 'px');
+                dot.style.setProperty('--y', (Math.random() * -120 - 30) + 'px');
+                dot.style.setProperty('--r', (Math.random() * 720 - 360) + 'deg');
+                dot.style.setProperty('--d', (Math.random() * 0.5) + 's');
+                dot.style.background = colors[Math.floor(Math.random() * colors.length)];
+                container.appendChild(dot);
+            }
+        }
+
+        /* ── Floating particles in hero ── */
+        const particlesEl = document.getElementById('hero-particles');
+        if (particlesEl) {
+            for (let i = 0; i < 20; i++) {
+                const p = document.createElement('span');
+                p.className = 'particle';
+                p.style.setProperty('--x', Math.random() * 100 + '%');
+                p.style.setProperty('--dur', (4 + Math.random() * 6) + 's');
+                p.style.setProperty('--delay', (Math.random() * 5) + 's');
+                p.style.setProperty('--size', (2 + Math.random() * 3) + 'px');
+                particlesEl.appendChild(p);
+            }
+        }
+    })();
     </script>
 </body>
 </html>

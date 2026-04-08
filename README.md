@@ -13,15 +13,39 @@
   <img src="https://img.shields.io/badge/version-3.0.0-red?style=flat-square" alt="Version 3.0.0">
   <img src="https://img.shields.io/badge/platform-Chrome-yellow?style=flat-square&logo=googlechrome&logoColor=white" alt="Chrome">
   <img src="https://img.shields.io/badge/license-MIT-green?style=flat-square" alt="License">
+  <img src="https://img.shields.io/badge/open_source-100%25-brightgreen?style=flat-square" alt="Open Source">
+</p>
+
+<p align="center">
+  <a href="https://github.com/R41CY/AQWikiTools/archive/refs/heads/main.zip"><strong>Download ZIP</strong></a> · 
+  <a href="http://aqwwikitools.vercel.app"><strong>Website</strong></a> · 
+  <a href="#installation"><strong>Install Guide</strong></a>
 </p>
 
 ---
 
 ## Overview
 
-**AQWikiTools** is a Chrome Manifest V3 extension built for [AdventureQuest Worlds](https://www.aq.com/) players who browse the [AQW Wiki](http://aqwwiki.wikidot.com/). It injects rich functionality directly into wiki and account pages — hover previews, merge/quest calculators, owned-item indicators, full dark mode, and a standalone Farm Tracker with thousands of items — so you never have to leave the wiki to plan your next grind.
+**AQWikiTools** is a free, open-source Chrome Manifest V3 extension built for [AdventureQuest Worlds](https://www.aq.com/) players who browse the [AQW Wiki](http://aqwwiki.wikidot.com/). It injects rich functionality directly into wiki and account pages — hover previews, merge/quest calculators, owned-item indicators, full dark mode, and a standalone Farm Tracker with thousands of items — so you never have to leave the wiki to plan your next grind.
 
 The extension syncs your in-game inventory from [account.aq.com](https://account.aq.com) and uses it across every feature: highlighting items you own, calculating what you still need, and tracking your overall collection progress.
+
+---
+
+## Is It Safe?
+
+**Yes.** AQWikiTools is 100% open source — every line of code is right here for you to inspect. Here's what you should know:
+
+| Concern | Answer |
+|---------|--------|
+| **Is the code open?** | Yes. Every file is publicly available in this repository under the [MIT License](LICENSE). |
+| **Does it collect my data?** | **No.** The extension does not send your data anywhere. Everything is stored locally in your browser via `chrome.storage.local`. |
+| **Does it access my AQW account?** | It reads your public inventory from `account.aq.com` (a page you're already logged into). It never touches your password or login credentials. |
+| **What permissions does it need?** | Only `storage` (to save settings locally) and access to `artix.com` (to check server boosts). That's it. |
+| **Can I verify it myself?** | Absolutely. You can scan the ZIP on [VirusTotal](https://www.virustotal.com/) before extracting, read every `.js` file in this repo, or use Chrome's built-in extension audit at `chrome://extensions`. |
+| **Does it run in the background?** | Only a minimal service worker that proxies fetch requests to the wiki (to bypass CORS). No background data collection, no analytics, no tracking. |
+
+> **Tip:** If you're still unsure, download the ZIP and upload it to [VirusTotal.com](https://www.virustotal.com/) — it's a free tool by Google that scans files with 70+ antivirus engines. You'll see it comes back clean.
 
 ---
 
@@ -103,6 +127,7 @@ When viewing another player's character page, an **[Owned]** tag appears next to
 ```
 AQWikiTools/
 ├── manifest.json                   # Extension manifest (MV3)
+├── LICENSE                         # MIT License
 │
 ├── assets/
 │   ├── icons/                      # Toolbar icons (16, 48, 128 px)
@@ -112,7 +137,9 @@ AQWikiTools/
 │   ├── WikiItems.json              # Master item database (~thousands of entries)
 │   ├── merge_shops.json            # Merge shop definitions with ingredients and NPCs
 │   ├── quests.json                 # Quest data with requirements and locations
-│   └── locations.json              # Map/monster index for source tooltips
+│   ├── locations.json              # Map/monster index for source tooltips
+│   ├── Classes.json                # Class data
+│   └── HardFarm.json              # Hard farm item data
 │
 ├── src/
 │   ├── pages/
@@ -142,49 +169,25 @@ AQWikiTools/
 
 ---
 
-## How It Works
-
-### Inventory Sync
-1. The user visits [account.aq.com/AQW/Inventory](https://account.aq.com/AQW/Inventory) while logged in.
-2. `inventory-sync.js` fetches `/Aqw/InventoryData`, normalizes item names (handling stacked items), and stores the full inventory in `chrome.storage.local`.
-3. Every other feature reads from this cached inventory — no repeated network calls.
-
-### Content Script Injection
-- On **aqwwiki.wikidot.com**: dark theme, hover previews (fetched via the background service worker to avoid CORS), merge/quest calculators, owned-item markers, collection chest progress bars, and server boost banners.
-- On **account.aq.com**: dark theme for character pages, `[Owned]` badges when comparing another player's inventory.
-
-### Background Service Worker
-Acts as a fetch proxy — content scripts send messages like `fetchWikiHTML` or `fetchArtixCalendar`, and the service worker performs the actual HTTP requests and returns the response. This avoids CORS restrictions that content scripts face.
-
-### Farm Tracker
-A full-page extension tab (`chrome.tabs.create`) that loads four local JSON databases and cross-references them against the synced inventory. Provides tabbed views:
-- **To Drop** — unowned items obtainable from monster drops
-- **To Merge** — unowned items from merge shops, grouped by shop
-- **To Quest** — unowned items from quest rewards
-- **In Bank** — items currently in the player's bank
-- **Completed** — collection statistics with donut charts
-
----
-
 ## Installation
 
-### From Source (Developer Mode)
+### Quick Download
 
-1. **Clone or download** this repository.
+1. **[Download the ZIP](https://github.com/R41CY/AQWikiTools/archive/refs/heads/main.zip)** from this repository.
+2. **Extract** the ZIP to a folder on your computer.
+3. Open Chrome and go to `chrome://extensions`.
+4. **Enable Developer Mode** (toggle in top-right).
+5. Click **"Load unpacked"** and select the extracted folder (the one with `manifest.json`).
+6. **Sync your inventory** — visit [account.aq.com/AQW/Inventory](https://account.aq.com/AQW/Inventory) while logged in.
+7. **Browse the Wiki** at [aqwwiki.wikidot.com](http://aqwwiki.wikidot.com/) and enjoy!
 
-   ```bash
-   git clone https://github.com/R41CY/AQWikiTools.git
-   ```
+### From Source
 
-2. **Open Chrome** and navigate to `chrome://extensions`.
+```bash
+git clone https://github.com/R41CY/AQWikiTools.git
+```
 
-3. **Enable Developer Mode** using the toggle in the top-right corner.
-
-4. Click **"Load unpacked"** and select the project root folder (the one containing `manifest.json`).
-
-5. **Sync your inventory** — visit [account.aq.com/AQW/Inventory](https://account.aq.com/AQW/Inventory) while logged in. The extension automatically detects and caches all inventory and bank items.
-
-6. **Browse the Wiki** at [aqwwiki.wikidot.com](http://aqwwiki.wikidot.com/) and enjoy the full feature set.
+Then follow steps 3–7 above.
 
 ---
 
@@ -229,10 +232,10 @@ Credit to their respective creators for the original concepts and community data
 
 ## License
 
-This project is provided under the [MIT License](LICENSE).
+This project is provided under the [MIT License](LICENSE). You are free to use, modify, and distribute it.
 
 ---
 
 <p align="center">
-  <sub>Built for the AQW community.</sub>
+  <sub>Built for the AQW community. Free & open source, forever.</sub>
 </p>
