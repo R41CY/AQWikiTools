@@ -173,7 +173,7 @@ A full-page extension tab (`chrome.tabs.create`) that loads four local JSON data
 1. **Clone or download** this repository.
 
    ```bash
-   git clone https://github.com/YOUR_USERNAME/AQWikiTools.git
+   git clone https://github.com/R41CY/AQWikiTools.git
    ```
 
 2. **Open Chrome** and navigate to `chrome://extensions`.
