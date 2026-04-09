@@ -66,10 +66,10 @@ Toggle dark mode, image previews, and character page settings. View your active 
 
 Full wiki dark mode with owned-item highlighting. Items you own are color-coded with bank/inventory icons displayed right on the page.
 
-### Hover Image Preview
-<img src="website/assets/screenshots/feature-image-preview.png" alt="Hover Preview" width="600">
+### Wiki Badges & Hover Preview
+<img src="website/assets/screenshots/feature-image-preview.png" alt="Wiki Badges & Hover Preview" width="600">
 
-Hover over any item link to see a detailed tooltip with the item image, location, rarity, price, and description — no page navigation required.
+Spot **community-estimated drop rate badges** right next to item names! Plus, hover any item to see its image, rarity, and description instantly.
 
 ### Quest Calculator
 <img src="website/assets/screenshots/feature-quest-calculator.png" alt="Quest Calculator" width="600">
@@ -84,7 +84,7 @@ Browse every unowned drop item in a filterable, searchable card grid. Filter by 
 ### Item Detail & Source Preview
 <img src="website/assets/screenshots/feature-farm-detail.png" alt="Item Detail Modal" width="600">
 
-Click any item to open a detailed modal with its description and drop sources. Hover a source entry to preview the monster image and map location.
+Click any item to open a detailed modal with its description and drop sources. Hover to preview monster and location. **Now features community-estimated drop rates!**
 
 ### Farm Tracker — To Merge
 <img src="website/assets/screenshots/feature-tomerge.png" alt="Farm Tracker To Merge" width="600">
