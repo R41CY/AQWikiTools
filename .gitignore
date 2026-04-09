@@ -1,0 +1,8 @@
+# Build artifacts
+*.zip
+*.xpi
+*.tar
+*.gz
+
+# Temporary directories
+temp_fx_build/
