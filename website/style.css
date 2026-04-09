@@ -213,6 +213,25 @@ kbd{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);bord
 .footer-brand{display:flex;align-items:center;gap:7px}
 .footer-logo{width:28px;height:28px;border-radius:7px}
 .footer-name{font-size:1.05rem;font-weight:700;color:var(--text-bright)}
+.footer-official-banner {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 8px 16px;
+    border-radius: 100px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin: 4px 0 8px;
+}
+.footer-official-banner i {
+    color: var(--accent);
+    font-size: 0.9rem;
+}
+.footer-official-banner strong {
+    color: var(--text-bright);
+}
 .footer-credit{font-size:.85rem;color:var(--text-muted);max-width:420px;line-height:1.6}
 .footer-links{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
 .footer-links a{font-size:.85rem;color:var(--text-muted);display:inline-flex;align-items:center;gap:4px;transition:color .15s}

@@ -1,0 +1,312 @@
+{
+  "_meta": {
+    "version": 4,
+    "description": "Drop rate / acquisition data for AQW items. Only includes items with verified rates (dev confirmed, wiki-listed percentages) or clear acquisition methods (merge, quest, shop). No guessing.",
+    "lastUpdated": "2026-04-09",
+    "tiers": {
+      "guaranteed": "Guaranteed (100%)",
+      "vc": "Very Common (40–60%)",
+      "c": "Common (20–35%)",
+      "m": "Moderate (10–20%)",
+      "u": "Uncommon (5–10%)",
+      "r": "Rare (2–5%)",
+      "vr": "Very Rare (0.5–2%)",
+      "ur": "Ultra Rare (<0.5%)"
+    },
+    "sources": {
+      "note": "Rates sourced from AE Design Notes (Jan 2020 Alina confirmation on Wheel of Chance rates), AQW Wiki confirmed percentages, and community-verified data only."
+    }
+  },
+  "items": {
+
+    "_comment_wheel_of_chance": "--- Wheel of Chance Quest Rewards (Dev Confirmed, Jan 2020) ---",
+
+    "Diamond of Nulgath": {
+      "tier": "vc",
+      "rate": "~50%",
+      "note": "Dev confirmed 50% from 'Supplies to Spin the Wheel of Chance'."
+    },
+    "Tainted Gem": {
+      "tier": "c",
+      "rate": "~30%",
+      "note": "Dev confirmed 30% from 'Supplies to Spin the Wheel of Chance'."
+    },
+    "Dark Crystal Shard": {
+      "tier": "c",
+      "rate": "~25%",
+      "note": "Dev confirmed ~25% from 'Supplies to Spin the Wheel of Chance'. Also from 'The Assistant'."
+    },
+    "Gem of Nulgath": {
+      "tier": "c",
+      "rate": "~20%",
+      "note": "Dev confirmed 20% from 'Supplies to Spin the Wheel of Chance'. Can also be merged."
+    },
+    "Unidentified 10": {
+      "tier": "guaranteed",
+      "rate": "100%",
+      "note": "Guaranteed reward from 'Supplies to Spin the Wheel of Chance' and 'The Assistant'."
+    },
+    "Voucher of Nulgath (non-mem)": {
+      "tier": "r",
+      "rate": "~1–3%",
+      "note": "~3% from 'Supplies to Spin the Wheel of Chance', rarer from other quests."
+    },
+
+    "_comment_nulgath_guaranteed": "--- Nulgath Items (Guaranteed / Merge / Quest / Shop) ---",
+
+    "Roentgenium of Nulgath": {
+      "tier": "guaranteed",
+      "rate": "Daily Quest",
+      "note": "1 per day from 'Void Highlord Challenge' daily quest."
+    },
+    "Void Crystal A": {
+      "tier": "guaranteed",
+      "rate": "Merge",
+      "note": "Merge: Uni 10 x200, Gem of Nulgath x150, Dark Crystal Shard x200, Tainted Gem x200. VHL Merge Shop /tercessuinotlim."
+    },
+    "Void Crystal B": {
+      "tier": "guaranteed",
+      "rate": "Merge",
+      "note": "Merge: Diamond of Nulgath x200, Blood Gem x30, Totem x15, Elder's Blood x2. VHL Merge Shop /tercessuinotlim."
+    },
+    "Blood Gem of the Archfiend": {
+      "tier": "guaranteed",
+      "rate": "100%",
+      "note": "100% quest reward from 'Kiss the Void', 'Bloody Chaos', 'Forge Blood Gems for Nulgath'."
+    },
+    "Totem of Nulgath": {
+      "tier": "guaranteed",
+      "rate": "Quest/Merge",
+      "note": "100% from 'Voucher Item: Totem of Nulgath' quest (requires Voucher non-mem + 60 Essences). Also from 'The Refreshing Deal'."
+    },
+    "Cubes": {
+      "tier": "guaranteed",
+      "rate": "100%",
+      "note": "100% drop from Box Guardian, Grizzlespit, Sneevil, Sneeviltron at /boxes."
+    },
+    "Defeated Makai": {
+      "tier": "guaranteed",
+      "rate": "100%",
+      "note": "100% temp drop from Dark Makai when quest is accepted."
+    },
+    "Fiend Token": {
+      "tier": "guaranteed",
+      "rate": "100%",
+      "note": "Guaranteed quest reward from 'Assisting Drudgen' and 'Time is Money'."
+    },
+    "Receipt of Nulgath": {
+      "tier": "guaranteed",
+      "rate": "100%",
+      "note": "100% from 'Receipt of Nulgath' quest turn-in."
+    },
+    "Dark Potion": {
+      "tier": "guaranteed",
+      "rate": "100%",
+      "note": "100% from 'The Dark Box' quest. Requires Dark Box + Dark Key from Treasure Chests."
+    },
+    "Blood Cloak": {
+      "tier": "guaranteed",
+      "rate": "Shop (100k Gold)",
+      "note": "Buy for 100,000 Gold from Yulgar's Inn, Nulgath Diamond Shop, etc."
+    },
+    "Unidentified 34": {
+      "tier": "guaranteed",
+      "rate": "100%",
+      "note": "Guaranteed from 'Willpower Extraction' quest."
+    },
+
+    "_comment_nulgath_rng": "--- Nulgath Items (RNG / Estimated) ---",
+
+    "Essence of Nulgath": {
+      "tier": "m",
+      "rate": "~10%",
+      "note": "~10% monster drop from Dark Makai. Primary farming method for Totems."
+    },
+    "Hadean Onyx of Nulgath": {
+      "tier": "vr",
+      "rate": "~1%",
+      "note": "~1% from Shadow of Nulgath in /tercessuinotlim."
+    },
+
+    "_comment_metals": "--- Element Reagents (Mine Crafting Daily) ---",
+
+    "Barium": {
+      "tier": "guaranteed",
+      "rate": "Daily Quest",
+      "note": "Choose as reward from 'Mine Crafting' daily quest at /necropolis."
+    },
+    "Copper": {
+      "tier": "guaranteed",
+      "rate": "Daily Quest",
+      "note": "Choose as reward from 'Mine Crafting' daily quest at /necropolis."
+    },
+    "Silver": {
+      "tier": "guaranteed",
+      "rate": "Daily Quest",
+      "note": "Choose as reward from 'Mine Crafting' daily quest at /necropolis."
+    },
+    "Gold": {
+      "tier": "guaranteed",
+      "rate": "Daily Quest",
+      "note": "Choose as reward from 'Mine Crafting' daily quest at /necropolis."
+    },
+    "Platinum": {
+      "tier": "guaranteed",
+      "rate": "Daily Quest",
+      "note": "Choose as reward from 'Mine Crafting' daily quest at /necropolis."
+    },
+    "Aluminum": {
+      "tier": "guaranteed",
+      "rate": "Daily Quest",
+      "note": "Choose as reward from 'Mine Crafting' daily quest at /necropolis."
+    },
+
+    "_comment_blod": "--- Blinding Light of Destiny ---",
+
+    "Spirit Orb": {
+      "tier": "guaranteed",
+      "rate": "100%",
+      "note": "Guaranteed from 'Essential Essences' / Fragment quests at /battleunderb."
+    },
+    "Loyal Spirit Orb": {
+      "tier": "guaranteed",
+      "rate": "Merge",
+      "note": "Merge: 100 Spirit Orbs in Light Merge shop."
+    },
+    "Bright Aura": {
+      "tier": "guaranteed",
+      "rate": "100%",
+      "note": "Guaranteed from 'Finding Fragments with the Blinding Bow'. Also merge: 50 Loyal Spirit Orbs."
+    },
+    "Brilliant Aura": {
+      "tier": "guaranteed",
+      "rate": "100%",
+      "note": "Guaranteed from 'Finding Fragments with the Blinding Mace'."
+    },
+    "Blinding Aura": {
+      "tier": "vr",
+      "rate": "~1%",
+      "note": "~1% rare reward from any 'Finding Fragments' quest."
+    },
+    "Bone Dust": {
+      "tier": "guaranteed",
+      "rate": "100%",
+      "note": "100% drop from Imperial Noxus at /necroproject (~40 per kill)."
+    },
+
+    "_comment_legion": "--- Legion ---",
+
+    "Legion Token": {
+      "tier": "u",
+      "rate": "~4–5%",
+      "note": "~4-5% from Axeros' Brooch in 'First Class Entertainment'. Also 100% from 'Undead Champion Recruitment' (10 LTs)."
+    },
+    "Conquest Wreath": {
+      "tier": "guaranteed",
+      "rate": "100%",
+      "note": "100% from Legion Fealty 2 quest turn-in."
+    },
+    "Exalted Crown": {
+      "tier": "guaranteed",
+      "rate": "100%",
+      "note": "100% from Legion Fealty 3 quest turn-in."
+    },
+    "Revenant's Spellscroll": {
+      "tier": "guaranteed",
+      "rate": "100%",
+      "note": "100% from Legion Fealty 1 quest turn-in."
+    },
+
+    "_comment_nsod": "--- Necrotic Sword of Doom ---",
+
+    "Void Aura": {
+      "tier": "guaranteed",
+      "rate": "Daily Quest",
+      "note": "50/day from 'The Encroaching Shadows' (non-mem). 100/day from 'Glimpse into the Dark' (mem). Need 7,500 total."
+    },
+    "Barium of Doom": {
+      "tier": "guaranteed",
+      "rate": "Merge",
+      "note": "Merge: Barium x1 + Void Aura x50 at NSoD Shop in /shadowfall."
+    },
+
+    "_comment_awe": "--- Awe Series ---",
+
+    "Runes of Awe": {
+      "tier": "ur",
+      "rate": "~0.1–0.5%",
+      "note": "0.1–0.5% from Chaos Lords. Up to ~2% from Ultra Tibicenas."
+    },
+
+    "_comment_confirmed_drops": "--- Confirmed Monster Drops (Wiki-verified %) ---",
+
+    "Adah's Overcharged Scythe": {
+      "tier": "vr",
+      "rate": "~1%",
+      "note": "1% from Ada (Monster) at /laken."
+    },
+    "Light Guardian Spirit Blade": {
+      "tier": "vr",
+      "rate": "0.5%",
+      "note": "0.5% confirmed from Mysterious Spirit at /lightguard. Members only."
+    },
+    "Purified Void Blade": {
+      "tier": "vr",
+      "rate": "~1%",
+      "note": "1% from Jir'abin (Challenge) at /voidbattle."
+    },
+
+    "_comment_endgame": "--- Endgame Items (Quest/Merge, not drops) ---",
+
+    "Legion Revenant": {
+      "tier": "guaranteed",
+      "rate": "Quest chain",
+      "note": "Not a drop. Complete all 4 Legion Fealty quests."
+    },
+    "Void Highlord": {
+      "tier": "guaranteed",
+      "rate": "Quest chain",
+      "note": "Not a drop. Requires 15 Roentgeniums (daily) + Void Crystal A + B."
+    },
+    "Necrotic Sword of Doom": {
+      "tier": "guaranteed",
+      "rate": "Quest chain",
+      "note": "Not a drop. Requires 7,500 Void Auras + reagents."
+    },
+    "Dragon of Time": {
+      "tier": "guaranteed",
+      "rate": "Quest chain",
+      "note": "Not a drop. Questline from Cronar at /yulgar."
+    },
+    "Lord of Order": {
+      "tier": "guaranteed",
+      "rate": "Daily Quest",
+      "note": "Not a drop. 10 daily quests from Mirror Drakath at /battleoff."
+    },
+    "Yami no Ronin": {
+      "tier": "guaranteed",
+      "rate": "Quest chain",
+      "note": "Not a drop. Questline from Dage at /darkally."
+    },
+    "Archfiend DoomLord": {
+      "tier": "guaranteed",
+      "rate": "Merge",
+      "note": "Not a drop. Merge requiring extensive Nulgath reagents."
+    },
+    "Blade of Awe": {
+      "tier": "guaranteed",
+      "rate": "Quest chain",
+      "note": "Not a drop. Valencia's questline at /museum."
+    },
+    "Radiant Goddess of War": {
+      "tier": "guaranteed",
+      "rate": "Quest chain",
+      "note": "Not a drop. Requires 7 prerequisite armors + badge quest."
+    },
+    "Archmage": {
+      "tier": "guaranteed",
+      "rate": "Quest chain",
+      "note": "Not a drop. Book of Archmage questline."
+    }
+  }
+}

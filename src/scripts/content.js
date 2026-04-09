@@ -34,6 +34,8 @@ const IS_MANAGE_ACCOUNT = window.location.href.includes("account.aq.com/AQW/Inve
 const IS_CHAR_PAGE = window.location.href.includes("account.aq.com/CharPage");
 const IS_WIKI_PAGE = window.location.href.includes("aqwwiki.wikidot.com");
 
+let AQWT_DROP_DATA_CACHE = null;
+
 // --- Hover Image Preview ---
 
 const container = document.createElement("div");
@@ -127,6 +129,31 @@ function showImage(data) {
     if (data.description) {
         container.appendChild(data.description);
     }
+    
+    // Add Drop Rate info if available
+    if (data.itemName && typeof AQWT_DROP_DATA_CACHE !== "undefined" && AQWT_DROP_DATA_CACHE) {
+        const baseName = getBaseName(data.itemName).toLowerCase();
+        // Try precise match then fuzzy match
+        const entry = AQWT_DROP_DATA_CACHE.lookup.get(data.itemName.toLowerCase()) || AQWT_DROP_DATA_CACHE.lookup.get(baseName);
+        
+        if (entry) {
+            const dropRateDiv = document.createElement("div");
+            dropRateDiv.className = "aqwt-hover-droprate";
+            
+            const rateText = entry.rate || (AQWT_DROP_DATA_CACHE.tiers && AQWT_DROP_DATA_CACHE.tiers[entry.tier]) || entry.tier;
+            dropRateDiv.innerHTML = `<strong style="color: #4ade80;">Drop Rate:</strong> <span class="aqwt-droprate-badge" style="background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px; margin-left: 4px;">${escapeHtml(rateText)}</span>`;
+            
+            if (entry.note) {
+                const note = document.createElement("div");
+                note.style.fontSize = "0.85em";
+                note.style.marginTop = "6px";
+                note.style.color = "#aaa";
+                note.textContent = entry.note;
+                dropRateDiv.appendChild(note);
+            }
+            container.appendChild(dropRateDiv);
+        }
+    }
 }
 
 /**
@@ -184,14 +211,21 @@ async function getImage(url, attempt = 1) {
                     });
 
                     if (!singleImg) {
-                        singleImg = allImages.find(img => !img.src.includes("/image-tags/"));
+                        singleImg = allImages.find(img => isValidImg(img.src) && !img.src.includes("/image-tags/"));
                     }
 
                     if (singleImg) foundImages.push(singleImg.src);
                 }
 
-                // Disambiguation: follow the first internal link if no images found
-                if (foundImages.length === 0) {
+                // Check if it's actually an item page even if missing images
+                let isItemPage = false;
+                const pageText = doc.querySelector("#page-content")?.textContent || "";
+                if (pageText.includes("Location:") || pageText.includes("Locations:") || pageText.includes("Price:") || pageText.includes("Base Stats:")) {
+                    isItemPage = true;
+                }
+
+                // Disambiguation: follow the first internal link if no images found AND it's not a real item page
+                if (foundImages.length === 0 && !isItemPage) {
                     const pageLinks = Array.from(doc.querySelectorAll("#page-content a"));
                     const disambiguationLink = pageLinks.find(a => {
                         const href = a.getAttribute("href");
@@ -207,18 +241,91 @@ async function getImage(url, attempt = 1) {
                     }
                 }
 
-                const paragraphs = doc.querySelectorAll("#page-content p");
-                let descriptionIndex = 2;
-                for (let i = 0; i < paragraphs.length; i++) {
-                    if (paragraphs[i].textContent.includes("Location:")) {
-                        descriptionIndex = i;
-                        break;
+                // --- Parse Description Details ---
+                const detailsContainer = document.createElement("div");
+                detailsContainer.className = "aqwt-hover-details";
+                
+                const pageContentDiv = doc.querySelector("#page-content");
+                if (pageContentDiv) {
+                    // Flatten tabs if they exist to prevent duplicating Male/Female descriptions
+                    let children = [];
+                    for (const child of Array.from(pageContentDiv.children)) {
+                        if (child.classList && child.classList.contains("yui-navset")) {
+                            const firstTab = child.querySelector(".yui-content > div");
+                            if (firstTab) {
+                                children.push(...Array.from(firstTab.children));
+                            }
+                        } else {
+                            children.push(child);
+                        }
+                    }
+                    
+                    let startCol = false;
+                    let numTabs = 0;
+                    
+                    for (const child of children) {
+                        if (child.tagName === "HR") break;
+                        
+                        const text = child.textContent.trim();
+                        if (!text || text.includes("List of all tags")) continue;
+                        
+                        if (!startCol) {
+                            if (text.includes("Location:") || text.includes("Locations:") || text.includes("Price:") || text.includes("Base Stats:")) {
+                                startCol = true;
+                            } else if (child.tagName === "P" && child.querySelector("strong")) {
+                                startCol = true;
+                            }
+                        }
+                        
+                        if (startCol) {
+                            let clone = child.cloneNode(true);
+                            let html = clone.innerHTML;
+                            let lower = html.toLowerCase();
+                            
+                            let cutIdx = lower.indexOf("<strong>notes:</strong>");
+                            if (cutIdx === -1) cutIdx = lower.indexOf("<strong>also see:</strong>");
+                            
+                            if (cutIdx !== -1) {
+                                clone.innerHTML = html.substring(0, cutIdx).replace(/<br\s*\/?>\s*$/i, "");
+                                if (clone.textContent.trim()) {
+                                    detailsContainer.appendChild(clone);
+                                }
+                                break;
+                            }
+                            
+                            if (text.toLowerCase() === "notes:" || text.toLowerCase() === "also see:") break;
+                            
+                            // Truncate massively long item lists
+                            if (clone.tagName === "UL" || clone.tagName === "OL") {
+                                const lis = Array.from(clone.children);
+                                if (lis.length > 3) {
+                                    while(clone.children.length > 3) clone.removeChild(clone.lastChild);
+                                    const dot = document.createElement("li");
+                                    dot.textContent = "...";
+                                    clone.appendChild(dot);
+                                }
+                            }
+                            
+                            detailsContainer.appendChild(clone);
+                            numTabs++;
+                            if (numTabs >= 3) break; // Keep hover info extremely short and punchy
+                        }
+                    }
+                    
+                    if (numTabs === 0) {
+                        const pTags = Array.from(pageContentDiv.querySelectorAll("p"));
+                        const fb = pTags.find(p => p.textContent.includes("Location:")) || pTags[2] || pTags[1];
+                        if (fb) detailsContainer.appendChild(fb.cloneNode(true));
                     }
                 }
+                
+                const pageTitle = doc.querySelector("#page-title");
+                const itemName = pageTitle ? pageTitle.textContent.trim() : null;
 
                 resolve({
                     images: foundImages,
-                    description: paragraphs[descriptionIndex] || null
+                    description: detailsContainer,
+                    itemName: itemName
                 });
 
             } catch (err) {
@@ -883,3 +990,143 @@ chrome.runtime.onMessage.addListener((message) => {
         setThemePage(message.theme);
     }
 });
+
+// --- Wiki Drop Rate Badges & Hover Drop Rates ---
+
+const TIER_COLORS = {
+    guaranteed: { bg: "rgba(34,197,94,0.18)", color: "#22c55e", border: "rgba(34,197,94,0.3)" },
+    vc:         { bg: "rgba(74,222,128,0.15)", color: "#4ade80", border: "rgba(74,222,128,0.25)" },
+    c:          { bg: "rgba(134,239,172,0.15)", color: "#86efac", border: "rgba(134,239,172,0.25)" },
+    m:          { bg: "rgba(253,224,71,0.15)", color: "#fde047", border: "rgba(253,224,71,0.25)" },
+    u:          { bg: "rgba(251,146,60,0.15)", color: "#fb923c", border: "rgba(251,146,60,0.25)" },
+    r:          { bg: "rgba(248,113,113,0.15)", color: "#f87171", border: "rgba(248,113,113,0.25)" },
+    vr:         { bg: "rgba(220,38,38,0.15)", color: "#dc2626", border: "rgba(220,38,38,0.25)" },
+    ur:         { bg: "rgba(168,85,247,0.15)", color: "#a855f7", border: "rgba(168,85,247,0.25)" }
+};
+
+/**
+ * Create an inline badge element for a drop rate entry.
+ * @param {Object} entry - The drop rate entry { tier, rate, note }.
+ * @param {Object} tiers - The tier definitions from _meta.
+ * @returns {HTMLSpanElement}
+ */
+function createDropRateBadge(entry, tiers) {
+    const badge = document.createElement("span");
+    badge.className = "aqwt-droprate-badge";
+
+    const colors = TIER_COLORS[entry.tier] || TIER_COLORS.m;
+    badge.style.cssText = `
+        display: inline-flex; align-items: center; gap: 3px;
+        padding: 1px 6px; margin-left: 4px; border-radius: 4px;
+        font-size: 0.72em; font-weight: 700; line-height: 1.4;
+        vertical-align: middle; cursor: help; white-space: nowrap;
+        background: ${colors.bg}; color: ${colors.color};
+        border: 1px solid ${colors.border};
+    `;
+
+    const rateText = entry.rate || (tiers && tiers[entry.tier]) || entry.tier;
+    badge.textContent = rateText;
+
+    if (entry.note) {
+        badge.title = entry.note;
+    }
+
+    return badge;
+}
+
+/**
+ * Fetch data and inject drop rate badges next to matching item names on wiki pages.
+ */
+async function initDropRates() {
+    let dropData;
+    try {
+        const url = chrome.runtime.getURL("data/drop_rates.json");
+        const res = await fetch(url);
+        dropData = await res.json();
+    } catch (e) {
+        return;
+    }
+
+    if (!dropData || !dropData.items) return;
+
+    const items = dropData.items;
+    const tiers = dropData._meta?.tiers || {};
+
+    // Build lookup: baseName -> entry (skip comment keys)
+    const lookup = new Map();
+    for (const [name, entry] of Object.entries(items)) {
+        if (name.startsWith("_comment")) continue;
+        if (typeof entry === "object" && entry.tier) {
+            lookup.set(name.toLowerCase(), entry);
+            // Also store with getBaseName for fuzzy matching
+            const base = getBaseName(name).toLowerCase();
+            if (base !== name.toLowerCase()) lookup.set(base, entry);
+        }
+    }
+    
+    AQWT_DROP_DATA_CACHE = { lookup, tiers };
+
+    // Only inject DOM badges if we are actively ON the wiki page itself!
+    if (!IS_WIKI_PAGE) return;
+    if (lookup.size === 0) return;
+
+    const processed = new Set();
+
+    // Target all links and text nodes inside #page-content
+    const pageContent = document.querySelector("#page-content");
+    if (!pageContent) return;
+
+    // 1. Links inside page content (item links)
+    const allLinks = pageContent.querySelectorAll("a");
+    allLinks.forEach(link => {
+        if (link.closest("#top-bar") || link.closest("#side-bar")) return;
+        if (link.querySelector(".aqwt-droprate-badge")) return;
+
+        const text = link.textContent.trim();
+        const baseName = getBaseName(text).toLowerCase();
+
+        const entry = lookup.get(baseName) || lookup.get(text.toLowerCase());
+        if (entry) {
+            const key = baseName + "|" + (link.closest("li,td,tr,p")?.textContent?.substring(0, 30) || "");
+            if (processed.has(key)) return;
+            processed.add(key);
+
+            link.after(createDropRateBadge(entry, tiers));
+        }
+    });
+
+    // 2. Also try to find item names in list items (li) that may have text without links
+    const listItems = pageContent.querySelectorAll("li");
+    listItems.forEach(li => {
+        if (li.querySelector(".aqwt-droprate-badge")) return;
+
+        // Get the first text chunk (before "x" quantity)
+        const textContent = li.textContent.trim();
+        const nameMatch = textContent.match(/^(.*?)(?:\s+x\s*[\d,]+)?$/i);
+        if (!nameMatch) return;
+
+        const rawName = nameMatch[1].replace(/"/g, "").trim();
+        const baseName = getBaseName(rawName).toLowerCase();
+
+        const entry = lookup.get(baseName);
+        if (entry) {
+            const key = "li|" + baseName;
+            if (processed.has(key)) return;
+            processed.add(key);
+
+            // Only add if there's no link already badged
+            const existingLink = li.querySelector("a");
+            const existingBadge = li.querySelector(".aqwt-droprate-badge");
+            if (!existingBadge) {
+                if (existingLink) {
+                    existingLink.after(createDropRateBadge(entry, tiers));
+                } else {
+                    li.appendChild(createDropRateBadge(entry, tiers));
+                }
+            }
+        }
+    });
+}
+
+// Run after a short delay to let other content scripts finish
+setTimeout(initDropRates, 300);

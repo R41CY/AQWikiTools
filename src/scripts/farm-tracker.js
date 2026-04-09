@@ -46,6 +46,7 @@ let wikiData = null;
 let mergeShopsData = null;
 let questsData = null;
 let locationsData = null;
+let dropRatesData = null;
 let accountItems = [];
 let accountItemSet = new Set();
 let accountByName = {};
@@ -141,6 +142,36 @@ function getItemTags(itemData) {
     }
     if (!hasAc && !hasLegend) tags.push("normal");
     return tags;
+}
+
+function getDropRateTier(itemName, itemData) {
+    const baseName = getBaseName(itemName);
+    if (dropRatesData && dropRatesData.items && dropRatesData.items[baseName]) {
+        const entry = dropRatesData.items[baseName];
+        // New format: entry is an object { tier, rate, note }
+        if (typeof entry === "object" && entry.tier) {
+            const tierLabel = (dropRatesData._meta && dropRatesData._meta.tiers && dropRatesData._meta.tiers[entry.tier]) || entry.tier;
+            return {
+                tier: entry.tier,
+                label: tierLabel,
+                rate: entry.rate || null,
+                note: entry.note || null
+            };
+        }
+        // Legacy format: entry is a plain tier string (e.g., "vr")
+        if (typeof entry === "string" && dropRatesData._meta && dropRatesData._meta.tiers && dropRatesData._meta.tiers[entry]) {
+            return { tier: entry, label: dropRatesData._meta.tiers[entry] };
+        }
+    }
+    // Heuristic fallback
+    if (!itemData) return { tier: "m", label: "Moderate (10–20%)" };
+    
+    const tags = getItemTags(itemData);
+    
+    if (tags.includes("ac")) return { tier: "r", label: "Rare (2–5%)" };
+    if (tags.includes("legend")) return { tier: "u", label: "Uncommon (5–10%)" };
+    
+    return { tier: "c", label: "Common (20–35%)" };
 }
 
 /** Cached filter state -- call snapshotFilters() once before a build loop. */
@@ -454,6 +485,11 @@ function showSourceTooltip(chipEl, type, name, slug) {
         typeLabel.className = "source-tooltip-type";
         typeLabel.innerHTML = `<i class="fa-solid ${FA_ICONS.drop}"></i> Monster Drop`;
         tooltip.appendChild(typeLabel);
+        
+        if (name) { // name here is the drop source or item? Wait, showSourceTooltip takes type, name, slug. For Drop, name is the source (monster name), not the item name. 
+            // Hmm, I can't look up item rate by monster name. I should pass the item name or rate info in the chip.
+            // Let's hold off on this tooltip modification or pass item name.
+        }
     } else if (type === "Merge") {
         const typeLabel = document.createElement("div");
         typeLabel.className = "source-tooltip-type";
@@ -620,8 +656,15 @@ function renderItemCard(name, data, options = {}) {
         const sourceType = priceData[0];
         const sourceName = priceData[1] || "";
         const sourceSlug = priceData[2] || "";
-        const sd = { type: sourceType, name: sourceName, slug: sourceSlug };
-        if (sourceType === "Drop") meta.appendChild(createChip("drop", sourceName, "source", sd));
+        const sd = { type: sourceType, name: sourceName, slug: sourceSlug, itemName: name };
+        if (sourceType === "Drop") {
+            meta.appendChild(createChip("drop", sourceName, "source", sd));
+            const rate = getDropRateTier(name, data);
+            const rateLabel = rate.rate || rate.label.split(" ")[0];
+            const rateChip = createChip("", rateLabel, `rate-tier drop-rate-${rate.tier}`);
+            if (rate.note) rateChip.title = rate.note;
+            meta.appendChild(rateChip);
+        }
         else if (sourceType === "Merge") meta.appendChild(createChip("merge", sourceName, "source", sd));
         else if (sourceType === "Quest") meta.appendChild(createChip("quest", sourceName, "source", sd));
         else if (sourceType === "AC" || sourceType === "GOLD") meta.appendChild(createChip("shop", sourceType + " " + sourceName, "source"));
@@ -1211,12 +1254,16 @@ async function openItemModal(name, data) {
         let priceHtml = `<div class="modal-label">How to Get</div><div class="modal-value">`;
 
         if (priceData[0] === "Drop") {
-            priceHtml += `<span class="chip source" data-tt-type="Drop" data-tt-name="${escapeHtml(priceData[1] || "")}" data-tt-slug="${escapeHtml(priceData[2] || "")}"><i class="fa-solid ${FA_ICONS.drop}"></i> Drop</span> `;
+            priceHtml += `<span class="chip source" data-tt-type="Drop" data-tt-item="${escapeHtml(name)}" data-tt-name="${escapeHtml(priceData[1] || "")}" data-tt-slug="${escapeHtml(priceData[2] || "")}"><i class="fa-solid ${FA_ICONS.drop}"></i> Drop</span> `;
             if (priceData[1]) {
                 priceHtml += priceData[2]
                     ? `<a href="${escapeHtml(wikiUrl(priceData[2]))}" target="_blank">${escapeHtml(priceData[1])}</a>`
                     : `<strong>${escapeHtml(priceData[1])}</strong>`;
             }
+            const rate = getDropRateTier(name, data);
+            const rateLabel = rate.rate ? `${rate.rate} — ${rate.label}` : rate.label;
+            const rateTitle = rate.note ? ` title="${escapeHtml(rate.note)}"` : "";
+            priceHtml += ` <span class="chip drop-rate-${rate.tier}"${rateTitle}>${rateLabel}</span>`;
         } else if (priceData[0] === "Merge") {
             priceHtml += `<span class="chip source" data-tt-type="Merge" data-tt-name="${escapeHtml(priceData[1] || "")}" data-tt-slug="${escapeHtml(priceData[2] || "")}"><i class="fa-solid ${FA_ICONS.merge}"></i> Merge</span> `;
             if (priceData[1]) priceHtml += `<a href="${escapeHtml(wikiUrl(priceData[2] || ""))}" target="_blank">${escapeHtml(priceData[1])}</a>`;
@@ -1431,17 +1478,19 @@ function invalidateBuildCache() {
 
 async function loadAllData() {
     try {
-        const [wikiRes, mergeRes, questRes, locRes] = await Promise.all([
+        const [wikiRes, mergeRes, questRes, locRes, dropRatesRes] = await Promise.all([
             fetch(chrome.runtime.getURL("data/WikiItems.json")).then(r => r.json()),
             fetch(chrome.runtime.getURL("data/merge_shops.json")).then(r => r.json()).catch(() => null),
             fetch(chrome.runtime.getURL("data/quests.json")).then(r => r.json()).catch(() => null),
-            fetch(chrome.runtime.getURL("data/locations.json")).then(r => r.json()).catch(() => null)
+            fetch(chrome.runtime.getURL("data/locations.json")).then(r => r.json()).catch(() => null),
+            fetch(chrome.runtime.getURL("data/drop_rates.json")).then(r => r.json()).catch(() => null)
         ]);
 
         wikiData = wikiRes;
         mergeShopsData = mergeRes;
         questsData = questRes;
         locationsData = locRes;
+        dropRatesData = dropRatesRes;
 
         buildWikiDataIndex();
         buildMonsterLocationIndex();

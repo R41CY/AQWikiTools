@@ -183,6 +183,7 @@ body.tema-escuro-char .card-header {
     overflow: hidden;
     justify-content: center;
     align-items: center;
+    flex-shrink: 0;
 }
 
 .content-view .img-add.img-multiple {
@@ -234,6 +235,53 @@ body.tema-escuro-char .card-header {
 }
 .content-view p a:hover {
     color: #aad0ff !important;
+}
+
+/* Hover Tooltip Extracted Item Details */
+.aqwt-hover-details {
+    padding: 12px 16px;
+    font-size: 0.88rem;
+    color: #e8e8f0;
+    line-height: 1.5;
+    background: #1a1a2e;
+}
+.aqwt-hover-details p {
+    margin: 4px 0 10px 0;
+}
+.aqwt-hover-details p:last-child {
+    margin-bottom: 0;
+}
+.aqwt-hover-details ul {
+    margin: 6px 0 10px 0;
+    padding-left: 20px;
+}
+.aqwt-hover-details li {
+    margin-bottom: 3px;
+}
+.aqwt-hover-details strong,
+.aqwt-hover-details b {
+    color: #ff9f7f !important;
+    font-weight: 700;
+}
+.aqwt-hover-details a {
+    color: #7eb8ff !important;
+    text-decoration: none;
+}
+.aqwt-hover-details a:hover {
+    color: #aad0ff !important;
+    text-decoration: underline;
+}
+
+/* Drop Rate info in hover tooltip */
+.aqwt-hover-droprate {
+    padding: 12px 16px;
+    background: rgba(0, 0, 0, 0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.9em;
+}
+
+.aqwt-hover-droprate strong {
+    color: #ffd700 !important;
 }
 
 /* ============================================

@@ -41,7 +41,8 @@
                 "assets/images/gold-boost.png",
                 "assets/images/xp-boost.png",
                 "assets/images/rep-boost.png",
-                "assets/images/class-boost.png"
+                "assets/images/class-boost.png",
+                "data/drop_rates.json"
             ],
             "matches": [
                 "*://aqwwiki.wikidot.com/*",

@@ -58,8 +58,8 @@ async function updateConfig() {
 
     try {
         const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-        if (tab) {
-            chrome.tabs.sendMessage(tab.id, { action: "updateTheme", theme: config });
+        if (tab && tab.id) {
+            chrome.tabs.sendMessage(tab.id, { action: "updateTheme", theme: config }).catch(() => {});
         }
     } catch {
         // Tab may not be on a matched page
