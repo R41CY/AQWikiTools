@@ -195,7 +195,7 @@ code{background:rgba(255,255,255,0.06);padding:1px 6px;border-radius:4px;font-si
 @keyframes popIn{0%{transform:scale(.5);opacity:0}60%{transform:scale(1.06)}100%{transform:scale(1);opacity:1}}
 .wizard-step h3{font-size:1.1rem;font-weight:700;color:var(--text-bright);margin-bottom:6px}
 .wizard-step p{font-size:.9rem;color:var(--text-muted);line-height:1.6;max-width:400px}
-.wizard-tip{display:inline-flex;align-items:flex-start;gap:8px;margin-top:10px;padding:9px 14px;border-radius:var(--radius-sm);background:rgba(255,255,255,.025);border:1px solid var(--border);font-size:.84rem;color:var(--text-muted);text-align:left}
+.wizard-tip{display:flex;align-items:flex-start;gap:8px;margin-top:10px;padding:9px 14px;border-radius:var(--radius-sm);background:rgba(255,255,255,.025);border:1px solid var(--border);font-size:.84rem;color:var(--text-muted);text-align:left;width:100%;max-width:400px}
 .wizard-tip i{color:var(--gold);font-size:.78rem;margin-top:1px;flex-shrink:0}
 .wizard-shortcut{display:inline-flex;align-items:center;gap:6px;margin-top:10px;font-size:.84rem;color:var(--text-muted)}
 .wizard-shortcut i{font-size:.5rem;opacity:.3}

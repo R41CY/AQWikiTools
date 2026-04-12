@@ -54,12 +54,7 @@
                 <a href="https://github.com/R41CY/AQWikiTools" target="_blank" class="nav-github">
                     <i class="fa-brands fa-github"></i> GitHub
                 </a>
-                <a href="https://github.com/R41CY/AQWikiTools/archive/refs/heads/main.zip" class="nav-cta">
-                    <i class="fa-brands fa-chrome"></i> Chrome
-                </a>
-                <a href="https://addons.mozilla.org/en-US/firefox/addon/aqwikitools/" target="_blank" class="nav-cta nav-cta-firefox">
-                    <i class="fa-brands fa-firefox-browser"></i> Firefox
-                </a>
+
             </div>
         </div>
     </nav>
@@ -81,14 +76,10 @@
             </p>
             <p class="hero-tagline">Available for <i class="fa-brands fa-chrome"></i> Chrome & <i class="fa-brands fa-firefox-browser"></i> Firefox — free, open-source, forever.</p>
             <div class="hero-buttons">
-                <a href="https://github.com/R41CY/AQWikiTools/archive/refs/heads/main.zip" class="btn btn-primary btn-glow" id="download-btn">
-                    <i class="fa-brands fa-chrome"></i> For Chrome
-                    <span class="btn-badge">v3.0</span>
+                <a href="#features" class="btn btn-primary btn-glow" id="hero-explore-btn">
+                    <i class="fa-solid fa-sparkles"></i> See What It Does
                 </a>
-                <a href="https://addons.mozilla.org/en-US/firefox/addon/aqwikitools/" target="_blank" class="btn btn-firefox btn-glow">
-                    <i class="fa-brands fa-firefox-browser"></i> For Firefox
-                </a>
-                <a href="#install" class="btn btn-secondary"><i class="fa-solid fa-puzzle-piece"></i> Install Guide</a>
+                <a href="#install" class="btn btn-secondary"><i class="fa-solid fa-download"></i> Get Started</a>
             </div>
             <div class="hero-stats">
                 <div class="hero-stat">
@@ -319,6 +310,7 @@
                             <button class="wizard-dot" data-step="4"><span>5</span></button>
                             <button class="wizard-dot" data-step="5"><span>6</span></button>
                             <button class="wizard-dot" data-step="6"><span>7</span></button>
+                            <button class="wizard-dot" data-step="7"><span>8</span></button>
                         </div>
                     </div>
 
@@ -338,7 +330,7 @@
                             <p><strong>Right-click</strong> the .zip &rarr; <strong>"Extract All..."</strong></p>
                             <div class="wizard-tip">
                                 <i class="fa-solid fa-triangle-exclamation"></i>
-                                Inside you'll see an <code>AQWikiTools-main</code> folder — that's the one you'll load in the next steps.
+                                <span>Inside you'll see an <code>AQWikiTools-main</code> folder — that's the one you'll load in the next steps.</span>
                             </div>
                         </div>
 
@@ -369,11 +361,21 @@
                             <p>Click <strong>"Load unpacked"</strong> &rarr; select the <code>AQWikiTools-main</code> folder.</p>
                             <div class="wizard-tip">
                                 <i class="fa-solid fa-lightbulb"></i>
-                                Pick the folder that has <code>manifest.json</code> inside it — not the outer wrapper folder.
+                                <span>Pick the folder that has <code>manifest.json</code> inside it — not the outer wrapper folder.</span>
                             </div>
                         </div>
 
                         <div class="wizard-step" data-step="5">
+                            <div class="wizard-icon"><i class="fa-solid fa-thumbtack"></i></div>
+                            <h3>Find & Pin the Extension</h3>
+                            <p>Click the <strong>puzzle piece icon</strong> <i class="fa-solid fa-puzzle-piece" style="color:var(--text-muted);"></i> in your Chrome toolbar (top-right), then click the <strong>pin icon</strong> next to <strong>AQWikiTools</strong>.</p>
+                            <div class="wizard-tip">
+                                <i class="fa-solid fa-lightbulb"></i>
+                                <span>This pins the AQWikiTools icon to your toolbar so you can always access it with one click. You'll use this icon to open settings, toggle dark mode, and launch the Farm Tracker.</span>
+                            </div>
+                        </div>
+
+                        <div class="wizard-step" data-step="6">
                             <div class="wizard-icon"><i class="fa-solid fa-rotate"></i></div>
                             <h3>Sync Your Inventory</h3>
                             <p>Visit <a href="https://account.aq.com/AQW/Inventory" target="_blank">account.aq.com</a> while logged in. The extension syncs automatically.</p>
@@ -383,17 +385,17 @@
                             </div>
                         </div>
 
-                        <div class="wizard-step" data-step="6">
+                        <div class="wizard-step" data-step="7">
                             <div class="wizard-icon wizard-icon-done"><i class="fa-solid fa-check-circle"></i></div>
                             <h3>You're All Set!</h3>
-                            <p>Visit <a href="http://aqwwiki.wikidot.com/" target="_blank">aqwwiki.wikidot.com</a> and enjoy! Open the popup for settings &amp; Farm Tracker.</p>
+                            <p>Visit <a href="http://aqwwiki.wikidot.com/" target="_blank">aqwwiki.wikidot.com</a> and enjoy! Click the AQWikiTools icon in your toolbar for settings &amp; Farm Tracker.</p>
                             <div class="wizard-confetti" id="wizard-confetti"></div>
                         </div>
                     </div>
 
                     <div class="wizard-nav">
                         <button class="btn btn-secondary btn-sm" id="wizard-prev" disabled><i class="fa-solid fa-arrow-left"></i> Back</button>
-                        <span class="wizard-counter"><span id="wizard-current">1</span> / 7</span>
+                        <span class="wizard-counter"><span id="wizard-current">1</span> / 8</span>
                         <button class="btn btn-primary btn-sm" id="wizard-next">Next <i class="fa-solid fa-arrow-right"></i></button>
                     </div>
                 </div>
@@ -408,6 +410,7 @@
                             <button class="wizard-dot active" data-step="0"><span>1</span></button>
                             <button class="wizard-dot" data-step="1"><span>2</span></button>
                             <button class="wizard-dot" data-step="2"><span>3</span></button>
+                            <button class="wizard-dot" data-step="3"><span>4</span></button>
                         </div>
                     </div>
 
@@ -421,11 +424,21 @@
                             </a>
                             <div class="wizard-tip" style="margin-top:12px;">
                                 <i class="fa-solid fa-circle-check" style="color:var(--green);"></i>
-                                No zips, no developer mode — it installs just like any other Firefox add-on!
+                                <span>No zips, no developer mode — it installs just like any other Firefox add-on!</span>
                             </div>
                         </div>
 
                         <div class="wizard-step" data-step="1">
+                            <div class="wizard-icon" style="background:rgba(255,113,57,.12);color:#ff7139;"><i class="fa-solid fa-hand-pointer"></i></div>
+                            <h3>Find the Extension Icon</h3>
+                            <p>After installing, look for the <strong>AQWikiTools icon</strong> in your Firefox toolbar (top-right). Click it to open the popup.</p>
+                            <div class="wizard-tip" style="margin-top:12px;">
+                                <i class="fa-solid fa-lightbulb"></i>
+                                <span>Don't see it? Click the <strong>puzzle piece icon</strong> in the toolbar, then pin AQWikiTools so it's always visible.</span>
+                            </div>
+                        </div>
+
+                        <div class="wizard-step" data-step="2">
                             <div class="wizard-icon"><i class="fa-solid fa-rotate"></i></div>
                             <h3>Sync Your Inventory</h3>
                             <p>Visit <a href="https://account.aq.com/AQW/Inventory" target="_blank">account.aq.com/AQW/Inventory</a> while logged in. The extension syncs automatically.</p>
@@ -435,21 +448,21 @@
                             </div>
                             <div class="wizard-tip" style="margin-top:12px;">
                                 <i class="fa-solid fa-lightbulb"></i>
-                                Make sure you're logged into your AQW account first. The extension reads your public inventory page — it never touches your password.
+                                <span>Make sure you're logged into your AQW account first. The extension reads your public inventory page — it never touches your password.</span>
                             </div>
                         </div>
 
-                        <div class="wizard-step" data-step="2">
+                        <div class="wizard-step" data-step="3">
                             <div class="wizard-icon wizard-icon-done"><i class="fa-solid fa-check-circle"></i></div>
                             <h3>You're All Set!</h3>
-                            <p>Head to <a href="http://aqwwiki.wikidot.com/" target="_blank">aqwwiki.wikidot.com</a> and enjoy! Click the extension icon in your toolbar to access settings &amp; the Farm Tracker.</p>
+                            <p>Head to <a href="http://aqwwiki.wikidot.com/" target="_blank">aqwwiki.wikidot.com</a> and enjoy! Click the AQWikiTools icon in your toolbar for settings &amp; the Farm Tracker.</p>
                             <div class="wizard-confetti" id="wizard-confetti-ff"></div>
                         </div>
                     </div>
 
                     <div class="wizard-nav">
                         <button class="btn btn-secondary btn-sm" id="wizard-prev-ff" disabled><i class="fa-solid fa-arrow-left"></i> Back</button>
-                        <span class="wizard-counter"><span id="wizard-current-ff">1</span> / 3</span>
+                        <span class="wizard-counter"><span id="wizard-current-ff">1</span> / 4</span>
                         <button class="btn btn-primary btn-sm" id="wizard-next-ff">Next <i class="fa-solid fa-arrow-right"></i></button>
                     </div>
                 </div>
@@ -903,7 +916,7 @@
         });
 
         /* ── Chrome Wizard ── */
-        const total = 7; let cur = 0;
+        const total = 8; let cur = 0;
         const dots = document.querySelectorAll('#wizard .wizard-dot'), wSteps = document.querySelectorAll('#wizard .wizard-step');
         const wBar = document.getElementById('wizard-bar'), pBtn = document.getElementById('wizard-prev'), nBtn = document.getElementById('wizard-next'), wCnt = document.getElementById('wizard-current');
 
@@ -948,7 +961,7 @@
         if (ft) ft.addEventListener('click', () => { ft.classList.toggle('on'); fl.textContent = ft.classList.contains('on') ? 'Developer Mode ON' : 'Click to try!'; });
 
         /* ── Firefox Wizard ── */
-        const ffTotal = 3; let ffCur = 0;
+        const ffTotal = 4; let ffCur = 0;
         const ffDots = document.querySelectorAll('#wizard-ff .wizard-dot'), ffSteps = document.querySelectorAll('#wizard-ff .wizard-step');
         const ffBar = document.getElementById('wizard-bar-ff'), ffPrev = document.getElementById('wizard-prev-ff'), ffNext = document.getElementById('wizard-next-ff'), ffCnt = document.getElementById('wizard-current-ff');
 
