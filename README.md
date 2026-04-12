@@ -79,7 +79,7 @@ Automatically detects quest pages and builds a live progress calculator showing 
 ### Farm Tracker — To Drop
 <img src="website/assets/screenshots/feature-tofarm.png" alt="Farm Tracker To Drop" width="600">
 
-Browse every unowned drop item in a filterable, searchable card grid. Filter by rarity (AC, Seasonal, Non-Rare, Legend) and view drop source details at a glance.
+Browse every unowned drop item in a filterable, searchable card grid. Use the advanced filtering bar to show only AC, Seasonal, Legend, or Normal items, and adjust the grid layout to your liking. View drop source details at a glance.
 
 ### Item Detail & Source Preview
 <img src="website/assets/screenshots/feature-farm-detail.png" alt="Item Detail Modal" width="600">
@@ -90,6 +90,9 @@ Click any item to open a detailed modal with its description and drop sources. H
 <img src="website/assets/screenshots/feature-tomerge.png" alt="Farm Tracker To Merge" width="600">
 
 View all unowned merge shop items grouped by shop. Each group shows NEEDED badges and an ownership progress indicator per shop.
+
+### Farm Tracker — To Quest
+View all unowned quest reward items grouped by quest. Easily track what quests you still need to complete to add items to your collection.
 
 ### In Bank View
 <img src="website/assets/screenshots/feature-bank-inv.png" alt="Bank View" width="600">
@@ -213,6 +216,7 @@ The extension only runs on `aqwwiki.wikidot.com` and `account.aq.com`. It does n
 | Farm Tracker | <img src="website/assets/screenshots/feature-tofarm.png" width="200"> |
 | Item Detail | <img src="website/assets/screenshots/feature-farm-detail.png" width="200"> |
 | Merge Tracker | <img src="website/assets/screenshots/feature-tomerge.png" width="200"> |
+| Quest Tracker | *(Available in Farm Tracker)* |
 | Bank View | <img src="website/assets/screenshots/feature-bank-inv.png" width="200"> |
 | Collection Stats | <img src="website/assets/screenshots/feature-completed.png" width="200"> |
 | Character Compare | <img src="website/assets/screenshots/feature-manage-account.png" width="200"> |
