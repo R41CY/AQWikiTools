@@ -5,19 +5,21 @@
 <h1 align="center">AQWikiTools</h1>
 
 <p align="center">
-  <strong>A Chrome extension that supercharges the AQW Wiki with item previews, calculators, inventory tracking, dark mode, and more.</strong>
+  <strong>A browser extension for Chrome & Firefox that supercharges the AQW Wiki with item previews, calculators, inventory tracking, dark mode, and more.</strong>
 </p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/manifest-v3-blue?style=flat-square" alt="Manifest V3">
   <img src="https://img.shields.io/badge/version-3.0.0-red?style=flat-square" alt="Version 3.0.0">
   <img src="https://img.shields.io/badge/platform-Chrome-yellow?style=flat-square&logo=googlechrome&logoColor=white" alt="Chrome">
+  <img src="https://img.shields.io/badge/platform-Firefox-ff7139?style=flat-square&logo=firefoxbrowser&logoColor=white" alt="Firefox">
   <img src="https://img.shields.io/badge/license-MIT-green?style=flat-square" alt="License">
   <img src="https://img.shields.io/badge/open_source-100%25-brightgreen?style=flat-square" alt="Open Source">
 </p>
 
 <p align="center">
-  <a href="https://github.com/R41CY/AQWikiTools/archive/refs/heads/main.zip"><strong>Download ZIP</strong></a> · 
+  <a href="https://github.com/R41CY/AQWikiTools/archive/refs/heads/main.zip"><strong>Download ZIP (Chrome)</strong></a> · 
+  <a href="https://addons.mozilla.org/en-US/firefox/addon/aqwikitools/"><strong>Firefox Add-on</strong></a> · 
   <a href="http://aqwwikitools.vercel.app"><strong>Website</strong></a> · 
   <a href="#installation"><strong>Install Guide</strong></a>
 </p>
@@ -26,7 +28,7 @@
 
 ## Overview
 
-**AQWikiTools** is a free, open-source Chrome Manifest V3 extension built for [AdventureQuest Worlds](https://www.aq.com/) players who browse the [AQW Wiki](http://aqwwiki.wikidot.com/). It injects rich functionality directly into wiki and account pages — hover previews, merge/quest calculators, owned-item indicators, full dark mode, and a standalone Farm Tracker with thousands of items — so you never have to leave the wiki to plan your next grind.
+**AQWikiTools** is a free, open-source browser extension (Chrome & Firefox) built for [AdventureQuest Worlds](https://www.aq.com/) players who browse the [AQW Wiki](http://aqwwiki.wikidot.com/). It injects rich functionality directly into wiki and account pages — hover previews, merge/quest calculators, owned-item indicators, full dark mode, and a standalone Farm Tracker with thousands of items — so you never have to leave the wiki to plan your next grind.
 
 The extension syncs your in-game inventory from [account.aq.com](https://account.aq.com) and uses it across every feature: highlighting items you own, calculating what you still need, and tracking your overall collection progress.
 
@@ -115,7 +117,7 @@ When viewing another player's character page, an **[Owned]** tag appears next to
 
 | Layer | Technology |
 |-------|------------|
-| **Platform** | Chrome Extension — Manifest V3 |
+| **Platform** | Chrome & Firefox Extension — Manifest V3 |
 | **Language** | Vanilla JavaScript (no build step / bundler) |
 | **Styling** | Plain CSS with CSS custom properties |
 | **Browser APIs** | `chrome.storage.local`, `chrome.runtime`, `chrome.tabs`, Content Scripts, Service Worker |
@@ -174,7 +176,13 @@ AQWikiTools/
 
 ## Installation
 
-### Quick Download
+### Firefox (Recommended — Easiest)
+
+1. **[Install from Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/aqwikitools/)** — click "Add to Firefox". That's it!
+2. **Sync your inventory** — visit [account.aq.com/AQW/Inventory](https://account.aq.com/AQW/Inventory) while logged in.
+3. **Browse the Wiki** at [aqwwiki.wikidot.com](http://aqwwiki.wikidot.com/) and enjoy!
+
+### Chrome (Manual Install)
 
 1. **[Download the ZIP](https://github.com/R41CY/AQWikiTools/archive/refs/heads/main.zip)** from this repository.
 2. **Extract** the ZIP to a folder on your computer.
@@ -190,7 +198,7 @@ AQWikiTools/
 git clone https://github.com/R41CY/AQWikiTools.git
 ```
 
-Then follow steps 3–7 above.
+Then follow the Chrome steps 3–7 above.
 
 ---
 

@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AQWikiTools — Enhance Your AQW Wiki Experience</title>
-    <meta name="description" content="A free, open-source Chrome extension that supercharges the AQW Wiki with item previews, calculators, inventory tracking, dark mode, farm tracking, and more.">
+    <meta name="description" content="A free, open-source browser extension for Chrome & Firefox that supercharges the AQW Wiki with item previews, calculators, inventory tracking, dark mode, farm tracking, and more.">
 
     <!-- Open Graph (Facebook, Messenger, Discord, etc.) -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://aqwikitools.vercel.app/">
     <meta property="og:title" content="AQWikiTools — Enhance Your AQW Wiki Experience">
-    <meta property="og:description" content="A free, open-source Chrome extension with item previews, calculators, inventory tracking, dark mode, farm tracking, and more for AQW Wiki.">
+    <meta property="og:description" content="A free, open-source browser extension for Chrome & Firefox with item previews, calculators, inventory tracking, dark mode, farm tracking, and more for AQW Wiki.">
     <meta property="og:image" content="https://aqwikitools.vercel.app/assets/logo.png">
     <meta property="og:image:width" content="512">
     <meta property="og:image:height" content="512">
@@ -18,7 +18,7 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="AQWikiTools — Enhance Your AQW Wiki Experience">
-    <meta name="twitter:description" content="Free, open-source Chrome extension for AQW Wiki — item previews, calculators, dark mode, farm tracking, and more.">
+    <meta name="twitter:description" content="Free, open-source browser extension for Chrome & Firefox — item previews, calculators, dark mode, farm tracking, and more.">
     <meta name="twitter:image" content="https://aqwikitools.vercel.app/assets/logo.png">
 
     <meta name="theme-color" content="#ff6b6b">
@@ -49,12 +49,16 @@
             <div class="nav-links" id="nav-links">
                 <a href="#features">Features</a>
                 <a href="#install">Install</a>
+                <a href="#usage">How to Use</a>
                 <a href="#trust">Safety</a>
                 <a href="https://github.com/R41CY/AQWikiTools" target="_blank" class="nav-github">
                     <i class="fa-brands fa-github"></i> GitHub
                 </a>
                 <a href="https://github.com/R41CY/AQWikiTools/archive/refs/heads/main.zip" class="nav-cta">
-                    <i class="fa-solid fa-download"></i> Download
+                    <i class="fa-brands fa-chrome"></i> Chrome
+                </a>
+                <a href="https://addons.mozilla.org/en-US/firefox/addon/aqwikitools/" target="_blank" class="nav-cta nav-cta-firefox">
+                    <i class="fa-brands fa-firefox-browser"></i> Firefox
                 </a>
             </div>
         </div>
@@ -75,10 +79,14 @@
                 Supercharge the AQW Wiki with
                 <span class="typed-wrap"><span class="typed" id="typed-text"></span><span class="typed-cursor">|</span></span>
             </p>
+            <p class="hero-tagline">Available for <i class="fa-brands fa-chrome"></i> Chrome & <i class="fa-brands fa-firefox-browser"></i> Firefox — free, open-source, forever.</p>
             <div class="hero-buttons">
                 <a href="https://github.com/R41CY/AQWikiTools/archive/refs/heads/main.zip" class="btn btn-primary btn-glow" id="download-btn">
-                    <i class="fa-solid fa-download"></i> Download Extension
+                    <i class="fa-brands fa-chrome"></i> For Chrome
                     <span class="btn-badge">v3.0</span>
+                </a>
+                <a href="https://addons.mozilla.org/en-US/firefox/addon/aqwikitools/" target="_blank" class="btn btn-firefox btn-glow">
+                    <i class="fa-brands fa-firefox-browser"></i> For Firefox
                 </a>
                 <a href="#install" class="btn btn-secondary"><i class="fa-solid fa-puzzle-piece"></i> Install Guide</a>
             </div>
@@ -89,8 +97,8 @@
                 </div>
                 <div class="hero-stat-divider"></div>
                 <div class="hero-stat">
-                    <span class="hero-stat-num" data-count="7">0</span>
-                    <span class="hero-stat-label">Easy Steps</span>
+                    <span class="hero-stat-num" data-count="2">0</span>
+                    <span class="hero-stat-label">Browsers</span>
                 </div>
                 <div class="hero-stat-divider"></div>
                 <div class="hero-stat">
@@ -281,96 +289,169 @@
             <div class="section-header">
                 <span class="section-badge"><i class="fa-solid fa-rocket"></i> Get Started</span>
                 <h2 class="section-title">Install in 2 Minutes</h2>
-                <p class="section-subtitle">Click through each step — it's easier than you think.</p>
+                <p class="section-subtitle">Pick your browser and follow the steps — it's easier than you think.</p>
             </div>
 
-            <div class="wizard" id="wizard">
-                <div class="wizard-progress">
-                    <div class="wizard-progress-bar" id="wizard-bar"></div>
-                    <div class="wizard-dots" id="wizard-dots">
-                        <button class="wizard-dot active" data-step="0"><span>1</span></button>
-                        <button class="wizard-dot" data-step="1"><span>2</span></button>
-                        <button class="wizard-dot" data-step="2"><span>3</span></button>
-                        <button class="wizard-dot" data-step="3"><span>4</span></button>
-                        <button class="wizard-dot" data-step="4"><span>5</span></button>
-                        <button class="wizard-dot" data-step="5"><span>6</span></button>
-                        <button class="wizard-dot" data-step="6"><span>7</span></button>
-                    </div>
-                </div>
+            <!-- Browser Picker Tabs -->
+            <div class="browser-picker" id="browser-picker">
+                <button class="browser-tab active" data-browser="chrome" id="tab-chrome">
+                    <i class="fa-brands fa-chrome"></i>
+                    <span>Chrome</span>
+                    <small>Manual install</small>
+                </button>
+                <button class="browser-tab" data-browser="firefox" id="tab-firefox">
+                    <i class="fa-brands fa-firefox-browser"></i>
+                    <span>Firefox</span>
+                    <small>One-click install</small>
+                </button>
+            </div>
 
-                <div class="wizard-card" id="wizard-card">
-                    <div class="wizard-step active" data-step="0">
-                        <div class="wizard-icon"><i class="fa-solid fa-download"></i></div>
-                        <h3>Download the Extension</h3>
-                        <p>Grab the ZIP from GitHub — one click.</p>
-                        <a href="https://github.com/R41CY/AQWikiTools/archive/refs/heads/main.zip" class="btn btn-primary btn-sm">
-                            <i class="fa-solid fa-download"></i> Download ZIP
-                        </a>
-                    </div>
-
-                    <div class="wizard-step" data-step="1">
-                        <div class="wizard-icon"><i class="fa-solid fa-box-open"></i></div>
-                        <h3>Extract the ZIP</h3>
-                        <p><strong>Right-click</strong> the .zip &rarr; <strong>"Extract All..."</strong></p>
-                        <div class="wizard-tip">
-                            <i class="fa-solid fa-triangle-exclamation"></i>
-                            Inside you'll see an <code>AQWikiTools-main</code> folder — that's the one you'll load in the next steps.
+            <!-- Chrome Install Wizard -->
+            <div class="install-flow" id="install-chrome">
+                <div class="wizard" id="wizard">
+                    <div class="wizard-progress">
+                        <div class="wizard-progress-bar" id="wizard-bar"></div>
+                        <div class="wizard-dots" id="wizard-dots">
+                            <button class="wizard-dot active" data-step="0"><span>1</span></button>
+                            <button class="wizard-dot" data-step="1"><span>2</span></button>
+                            <button class="wizard-dot" data-step="2"><span>3</span></button>
+                            <button class="wizard-dot" data-step="3"><span>4</span></button>
+                            <button class="wizard-dot" data-step="4"><span>5</span></button>
+                            <button class="wizard-dot" data-step="5"><span>6</span></button>
+                            <button class="wizard-dot" data-step="6"><span>7</span></button>
                         </div>
                     </div>
 
-                    <div class="wizard-step" data-step="2">
-                        <div class="wizard-icon"><i class="fa-brands fa-chrome"></i></div>
-                        <h3>Open Extensions Page</h3>
-                        <p>Type <code>chrome://extensions</code> in your address bar.</p>
-                        <div class="wizard-shortcut">
-                            <kbd>Menu</kbd> <i class="fa-solid fa-chevron-right"></i> <kbd>More tools</kbd> <i class="fa-solid fa-chevron-right"></i> <kbd>Extensions</kbd>
+                    <div class="wizard-card" id="wizard-card">
+                        <div class="wizard-step active" data-step="0">
+                            <div class="wizard-icon"><i class="fa-solid fa-download"></i></div>
+                            <h3>Download the Extension</h3>
+                            <p>Grab the ZIP from GitHub — one click.</p>
+                            <a href="https://github.com/R41CY/AQWikiTools/archive/refs/heads/main.zip" class="btn btn-primary btn-sm">
+                                <i class="fa-solid fa-download"></i> Download ZIP
+                            </a>
                         </div>
-                    </div>
 
-                    <div class="wizard-step" data-step="3">
-                        <div class="wizard-icon"><i class="fa-solid fa-toggle-on"></i></div>
-                        <h3>Enable Developer Mode</h3>
-                        <p>Flip the toggle in the top-right corner.</p>
-                        <div class="wizard-visual">
-                            <div class="fake-toggle" id="fake-toggle">
-                                <div class="fake-toggle-knob"></div>
+                        <div class="wizard-step" data-step="1">
+                            <div class="wizard-icon"><i class="fa-solid fa-box-open"></i></div>
+                            <h3>Extract the ZIP</h3>
+                            <p><strong>Right-click</strong> the .zip &rarr; <strong>"Extract All..."</strong></p>
+                            <div class="wizard-tip">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                                Inside you'll see an <code>AQWikiTools-main</code> folder — that's the one you'll load in the next steps.
                             </div>
-                            <span class="fake-toggle-label" id="fake-toggle-label">Click to try!</span>
+                        </div>
+
+                        <div class="wizard-step" data-step="2">
+                            <div class="wizard-icon"><i class="fa-brands fa-chrome"></i></div>
+                            <h3>Open Extensions Page</h3>
+                            <p>Type <code>chrome://extensions</code> in your address bar.</p>
+                            <div class="wizard-shortcut">
+                                <kbd>Menu</kbd> <i class="fa-solid fa-chevron-right"></i> <kbd>More tools</kbd> <i class="fa-solid fa-chevron-right"></i> <kbd>Extensions</kbd>
+                            </div>
+                        </div>
+
+                        <div class="wizard-step" data-step="3">
+                            <div class="wizard-icon"><i class="fa-solid fa-toggle-on"></i></div>
+                            <h3>Enable Developer Mode</h3>
+                            <p>Flip the toggle in the top-right corner.</p>
+                            <div class="wizard-visual">
+                                <div class="fake-toggle" id="fake-toggle">
+                                    <div class="fake-toggle-knob"></div>
+                                </div>
+                                <span class="fake-toggle-label" id="fake-toggle-label">Click to try!</span>
+                            </div>
+                        </div>
+
+                        <div class="wizard-step" data-step="4">
+                            <div class="wizard-icon"><i class="fa-solid fa-folder-open"></i></div>
+                            <h3>Load Unpacked</h3>
+                            <p>Click <strong>"Load unpacked"</strong> &rarr; select the <code>AQWikiTools-main</code> folder.</p>
+                            <div class="wizard-tip">
+                                <i class="fa-solid fa-lightbulb"></i>
+                                Pick the folder that has <code>manifest.json</code> inside it — not the outer wrapper folder.
+                            </div>
+                        </div>
+
+                        <div class="wizard-step" data-step="5">
+                            <div class="wizard-icon"><i class="fa-solid fa-rotate"></i></div>
+                            <h3>Sync Your Inventory</h3>
+                            <p>Visit <a href="https://account.aq.com/AQW/Inventory" target="_blank">account.aq.com</a> while logged in. The extension syncs automatically.</p>
+                            <div class="wizard-loading-demo">
+                                <div class="wizard-loading-bar"><div class="wizard-loading-fill"></div></div>
+                                <span>Syncing items...</span>
+                            </div>
+                        </div>
+
+                        <div class="wizard-step" data-step="6">
+                            <div class="wizard-icon wizard-icon-done"><i class="fa-solid fa-check-circle"></i></div>
+                            <h3>You're All Set!</h3>
+                            <p>Visit <a href="http://aqwwiki.wikidot.com/" target="_blank">aqwwiki.wikidot.com</a> and enjoy! Open the popup for settings &amp; Farm Tracker.</p>
+                            <div class="wizard-confetti" id="wizard-confetti"></div>
                         </div>
                     </div>
 
-                    <div class="wizard-step" data-step="4">
-                        <div class="wizard-icon"><i class="fa-solid fa-folder-open"></i></div>
-                        <h3>Load Unpacked</h3>
-                        <p>Click <strong>"Load unpacked"</strong> &rarr; select the <code>AQWikiTools-main</code> folder.</p>
-                        <div class="wizard-tip">
-                            <i class="fa-solid fa-lightbulb"></i>
-                            Pick the folder that has <code>manifest.json</code> inside it — not the outer wrapper folder.
-                        </div>
-                    </div>
-
-                    <div class="wizard-step" data-step="5">
-                        <div class="wizard-icon"><i class="fa-solid fa-rotate"></i></div>
-                        <h3>Sync Your Inventory</h3>
-                        <p>Visit <a href="https://account.aq.com/AQW/Inventory" target="_blank">account.aq.com</a> while logged in. The extension syncs automatically.</p>
-                        <div class="wizard-loading-demo">
-                            <div class="wizard-loading-bar"><div class="wizard-loading-fill"></div></div>
-                            <span>Syncing items...</span>
-                        </div>
-                    </div>
-
-                    <div class="wizard-step" data-step="6">
-                        <div class="wizard-icon wizard-icon-done"><i class="fa-solid fa-check-circle"></i></div>
-                        <h3>You're All Set!</h3>
-                        <p>Visit <a href="http://aqwwiki.wikidot.com/" target="_blank">aqwwiki.wikidot.com</a> and enjoy! Open the popup for settings &amp; Farm Tracker.</p>
-                        <div class="wizard-confetti" id="wizard-confetti"></div>
+                    <div class="wizard-nav">
+                        <button class="btn btn-secondary btn-sm" id="wizard-prev" disabled><i class="fa-solid fa-arrow-left"></i> Back</button>
+                        <span class="wizard-counter"><span id="wizard-current">1</span> / 7</span>
+                        <button class="btn btn-primary btn-sm" id="wizard-next">Next <i class="fa-solid fa-arrow-right"></i></button>
                     </div>
                 </div>
+            </div>
 
-                <div class="wizard-nav">
-                    <button class="btn btn-secondary btn-sm" id="wizard-prev" disabled><i class="fa-solid fa-arrow-left"></i> Back</button>
-                    <span class="wizard-counter"><span id="wizard-current">1</span> / 7</span>
-                    <button class="btn btn-primary btn-sm" id="wizard-next">Next <i class="fa-solid fa-arrow-right"></i></button>
+            <!-- Firefox Install Flow -->
+            <div class="install-flow" id="install-firefox" style="display:none;">
+                <div class="wizard" id="wizard-ff">
+                    <div class="wizard-progress">
+                        <div class="wizard-progress-bar" id="wizard-bar-ff" style="width:0%"></div>
+                        <div class="wizard-dots">
+                            <button class="wizard-dot active" data-step="0"><span>1</span></button>
+                            <button class="wizard-dot" data-step="1"><span>2</span></button>
+                            <button class="wizard-dot" data-step="2"><span>3</span></button>
+                        </div>
+                    </div>
+
+                    <div class="wizard-card" id="wizard-card-ff">
+                        <div class="wizard-step active" data-step="0">
+                            <div class="wizard-icon" style="background:rgba(255,113,57,.12);color:#ff7139;"><i class="fa-brands fa-firefox-browser"></i></div>
+                            <h3>Install from Firefox Add-ons</h3>
+                            <p>Click the button below to open the official add-on page. Then click <strong>"Add to Firefox"</strong>.</p>
+                            <a href="https://addons.mozilla.org/en-US/firefox/addon/aqwikitools/" target="_blank" class="btn btn-firefox btn-sm">
+                                <i class="fa-brands fa-firefox-browser"></i> Get AQWikiTools for Firefox
+                            </a>
+                            <div class="wizard-tip" style="margin-top:12px;">
+                                <i class="fa-solid fa-circle-check" style="color:var(--green);"></i>
+                                No zips, no developer mode — it installs just like any other Firefox add-on!
+                            </div>
+                        </div>
+
+                        <div class="wizard-step" data-step="1">
+                            <div class="wizard-icon"><i class="fa-solid fa-rotate"></i></div>
+                            <h3>Sync Your Inventory</h3>
+                            <p>Visit <a href="https://account.aq.com/AQW/Inventory" target="_blank">account.aq.com/AQW/Inventory</a> while logged in. The extension syncs automatically.</p>
+                            <div class="wizard-loading-demo">
+                                <div class="wizard-loading-bar"><div class="wizard-loading-fill"></div></div>
+                                <span>Syncing items...</span>
+                            </div>
+                            <div class="wizard-tip" style="margin-top:12px;">
+                                <i class="fa-solid fa-lightbulb"></i>
+                                Make sure you're logged into your AQW account first. The extension reads your public inventory page — it never touches your password.
+                            </div>
+                        </div>
+
+                        <div class="wizard-step" data-step="2">
+                            <div class="wizard-icon wizard-icon-done"><i class="fa-solid fa-check-circle"></i></div>
+                            <h3>You're All Set!</h3>
+                            <p>Head to <a href="http://aqwwiki.wikidot.com/" target="_blank">aqwwiki.wikidot.com</a> and enjoy! Click the extension icon in your toolbar to access settings &amp; the Farm Tracker.</p>
+                            <div class="wizard-confetti" id="wizard-confetti-ff"></div>
+                        </div>
+                    </div>
+
+                    <div class="wizard-nav">
+                        <button class="btn btn-secondary btn-sm" id="wizard-prev-ff" disabled><i class="fa-solid fa-arrow-left"></i> Back</button>
+                        <span class="wizard-counter"><span id="wizard-current-ff">1</span> / 3</span>
+                        <button class="btn btn-primary btn-sm" id="wizard-next-ff">Next <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -378,8 +459,278 @@
 
     <div class="section-divider"></div>
 
+    <!-- How to Use (NEW) -->
+    <section id="usage" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge section-badge-blue"><i class="fa-solid fa-book-open"></i> Guide</span>
+                <h2 class="section-title">How to Use AQWikiTools</h2>
+                <p class="section-subtitle">Not sure where to start? Here's a quick guide to every feature — click each one to expand.</p>
+            </div>
+
+            <div class="usage-guides" id="usage-guides">
+
+                <!-- Guide 1: First Steps -->
+                <div class="guide-card" id="guide-first-steps">
+                    <button class="guide-header" aria-expanded="false">
+                        <div class="guide-icon"><i class="fa-solid fa-play-circle"></i></div>
+                        <div class="guide-header-text">
+                            <h3>First Steps After Installing</h3>
+                            <p>What to do right after installation — sync your inventory and start browsing.</p>
+                        </div>
+                        <i class="fa-solid fa-chevron-down guide-chevron"></i>
+                    </button>
+                    <div class="guide-content">
+                        <div class="guide-steps">
+                            <div class="guide-step">
+                                <div class="guide-step-num">1</div>
+                                <div class="guide-step-body">
+                                    <strong>Sync your inventory</strong>
+                                    <p>Go to <a href="https://account.aq.com/AQW/Inventory" target="_blank">account.aq.com/AQW/Inventory</a> and make sure you're logged into your AQW account. The extension will automatically detect and save your items — you'll see a green checkmark in the popup when it's done.</p>
+                                </div>
+                            </div>
+                            <div class="guide-step">
+                                <div class="guide-step-num">2</div>
+                                <div class="guide-step-body">
+                                    <strong>Browse the AQW Wiki</strong>
+                                    <p>Head to <a href="http://aqwwiki.wikidot.com/" target="_blank">aqwwiki.wikidot.com</a>. The extension activates automatically on the wiki — you'll see item previews, owned badges, and dark mode (if enabled) right away.</p>
+                                </div>
+                            </div>
+                            <div class="guide-step">
+                                <div class="guide-step-num">3</div>
+                                <div class="guide-step-body">
+                                    <strong>Open the popup</strong>
+                                    <p>Click the AQWikiTools icon in your browser toolbar to access settings, toggle dark mode, check your sync status, and launch the Farm Tracker.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="guide-note">
+                            <i class="fa-solid fa-circle-info"></i>
+                            <span><strong>Re-sync anytime:</strong> If you get new items in-game, just revisit the account page to update your inventory. The extension will pick up the changes automatically.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Guide 2: Wiki Features -->
+                <div class="guide-card" id="guide-wiki-features">
+                    <button class="guide-header" aria-expanded="false">
+                        <div class="guide-icon" style="background:rgba(129,140,248,.1);color:var(--blue);"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                        <div class="guide-header-text">
+                            <h3>Wiki Features (Dark Mode, Previews, Badges)</h3>
+                            <p>Features that activate automatically when you browse the AQW Wiki.</p>
+                        </div>
+                        <i class="fa-solid fa-chevron-down guide-chevron"></i>
+                    </button>
+                    <div class="guide-content">
+                        <div class="guide-steps">
+                            <div class="guide-step">
+                                <div class="guide-step-num"><i class="fa-solid fa-moon"></i></div>
+                                <div class="guide-step-body">
+                                    <strong>Dark Mode</strong>
+                                    <p>Toggle it from the extension popup. Once enabled, every AQW Wiki page will render in a clean dark theme. Your preference is saved automatically.</p>
+                                </div>
+                            </div>
+                            <div class="guide-step">
+                                <div class="guide-step-num"><i class="fa-solid fa-image"></i></div>
+                                <div class="guide-step-body">
+                                    <strong>Hover Previews</strong>
+                                    <p>Hover over any item link on the wiki to see a popup with the item's image, rarity, and description. No clicks needed — just hover!</p>
+                                </div>
+                            </div>
+                            <div class="guide-step">
+                                <div class="guide-step-num"><i class="fa-solid fa-tag"></i></div>
+                                <div class="guide-step-body">
+                                    <strong>Owned Item Badges</strong>
+                                    <p>After syncing, items you own will show color-coded <span class="owned-tag">[Owned]</span> badges and bank/inventory icons right on wiki pages. Instantly know if you already have something!</p>
+                                </div>
+                            </div>
+                            <div class="guide-step">
+                                <div class="guide-step-num"><i class="fa-solid fa-percent"></i></div>
+                                <div class="guide-step-body">
+                                    <strong>Drop Rate Badges</strong>
+                                    <p>Community-estimated drop rates appear as small badges next to item names on the wiki. These help you decide whether a farm is worth the grind.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="guide-note">
+                            <i class="fa-solid fa-circle-info"></i>
+                            <span>All wiki features work automatically — no setup needed beyond installing the extension and syncing your inventory.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Guide 3: Quest Calculator -->
+                <div class="guide-card" id="guide-quest-calc">
+                    <button class="guide-header" aria-expanded="false">
+                        <div class="guide-icon" style="background:rgba(251,191,36,.08);color:#fbbf24;"><i class="fa-solid fa-calculator"></i></div>
+                        <div class="guide-header-text">
+                            <h3>Quest & Merge Calculators</h3>
+                            <p>Automatically see what materials you still need on quest and merge shop pages.</p>
+                        </div>
+                        <i class="fa-solid fa-chevron-down guide-chevron"></i>
+                    </button>
+                    <div class="guide-content">
+                        <div class="guide-steps">
+                            <div class="guide-step">
+                                <div class="guide-step-num">1</div>
+                                <div class="guide-step-body">
+                                    <strong>Visit any quest page on the wiki</strong>
+                                    <p>For example, go to a quest like <a href="http://aqwwiki.wikidot.com/the-assistant" target="_blank">The Assistant</a> on the AQW Wiki.</p>
+                                </div>
+                            </div>
+                            <div class="guide-step">
+                                <div class="guide-step-num">2</div>
+                                <div class="guide-step-body">
+                                    <strong>See the calculator appear automatically</strong>
+                                    <p>The extension injects a progress bar and material breakdown showing how many of each required item you own vs. how many you need. Green = done, red = still needed.</p>
+                                </div>
+                            </div>
+                            <div class="guide-step">
+                                <div class="guide-step-num">3</div>
+                                <div class="guide-step-body">
+                                    <strong>Works on merge shops too</strong>
+                                    <p>Visit any merge shop page on the wiki and you'll see the same calculator with material tracking for each merge recipe.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="guide-note">
+                            <i class="fa-solid fa-lightbulb"></i>
+                            <span><strong>Pro tip:</strong> The calculator updates every time you re-sync your inventory. Farm some materials, re-sync, and watch your progress bar fill up!</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Guide 4: Farm Tracker -->
+                <div class="guide-card" id="guide-farm-tracker">
+                    <button class="guide-header" aria-expanded="false">
+                        <div class="guide-icon" style="background:rgba(74,222,128,.08);color:var(--green);"><i class="fa-solid fa-crosshairs"></i></div>
+                        <div class="guide-header-text">
+                            <h3>Farm Tracker</h3>
+                            <p>Your personal dashboard for tracking drops, merges, quests, bank items, and collection progress.</p>
+                        </div>
+                        <i class="fa-solid fa-chevron-down guide-chevron"></i>
+                    </button>
+                    <div class="guide-content">
+                        <div class="guide-steps">
+                            <div class="guide-step">
+                                <div class="guide-step-num">1</div>
+                                <div class="guide-step-body">
+                                    <strong>Open the Farm Tracker</strong>
+                                    <p>Click the AQWikiTools icon in your toolbar, then click the <strong>"Farm Tracker"</strong> button. It opens in a new tab as a full-page dashboard.</p>
+                                </div>
+                            </div>
+                            <div class="guide-step">
+                                <div class="guide-step-num">2</div>
+                                <div class="guide-step-body">
+                                    <strong>Use the tabs at the top</strong>
+                                    <p>Switch between different views:</p>
+                                    <ul class="guide-list">
+                                        <li><strong>To Drop</strong> — All unowned items that drop from monsters/quests. Filter by rarity (AC, Seasonal, Legend, etc.)</li>
+                                        <li><strong>To Merge</strong> — Unowned items available from merge shops, grouped by shop with progress bars</li>
+                                        <li><strong>To Quest</strong> — Quest rewards you haven't obtained yet</li>
+                                        <li><strong>In Bank</strong> — All items currently in your bank</li>
+                                        <li><strong>Completed</strong> — Collection completion stats with donut charts</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="guide-step">
+                                <div class="guide-step-num">3</div>
+                                <div class="guide-step-body">
+                                    <strong>Search & filter items</strong>
+                                    <p>Use the search bar to find specific items. Use the filter buttons to narrow by rarity type. Click any item card to see its full details, drop sources, and drop rates.</p>
+                                </div>
+                            </div>
+                            <div class="guide-step">
+                                <div class="guide-step-num">4</div>
+                                <div class="guide-step-body">
+                                    <strong>Check detailed item info</strong>
+                                    <p>Click on any item to open a detail modal. You'll see the item description, where it drops from, and community-estimated drop rates. Hover on monster/location names for quick previews.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="guide-note">
+                            <i class="fa-solid fa-lightbulb"></i>
+                            <span><strong>Pro tip:</strong> The Farm Tracker uses your synced inventory to know what you own. Re-sync after farming to see your progress update in real time!</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Guide 5: Character Compare -->
+                <div class="guide-card" id="guide-character-compare">
+                    <button class="guide-header" aria-expanded="false">
+                        <div class="guide-icon" style="background:rgba(212,168,83,.08);color:var(--gold);"><i class="fa-solid fa-users"></i></div>
+                        <div class="guide-header-text">
+                            <h3>Character Page Compare</h3>
+                            <p>Compare your inventory with other players' character pages.</p>
+                        </div>
+                        <i class="fa-solid fa-chevron-down guide-chevron"></i>
+                    </button>
+                    <div class="guide-content">
+                        <div class="guide-steps">
+                            <div class="guide-step">
+                                <div class="guide-step-num">1</div>
+                                <div class="guide-step-body">
+                                    <strong>Visit any player's character page</strong>
+                                    <p>Go to a character page on AQW's account site (e.g., <code>account.aq.com/CharPage?id=PlayerName</code>).</p>
+                                </div>
+                            </div>
+                            <div class="guide-step">
+                                <div class="guide-step-num">2</div>
+                                <div class="guide-step-body">
+                                    <strong>See <span class="owned-tag">[Owned]</span> tags</strong>
+                                    <p>Items that you also own will be highlighted with an <span class="owned-tag">[Owned]</span> tag. This makes it easy to quickly spot items you <em>don't</em> have and might want to farm for.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="guide-note">
+                            <i class="fa-solid fa-circle-info"></i>
+                            <span>Make sure you've synced your own inventory first — the comparison uses your saved item data.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Guide 6: Settings -->
+                <div class="guide-card" id="guide-settings">
+                    <button class="guide-header" aria-expanded="false">
+                        <div class="guide-icon" style="background:rgba(255,255,255,.04);color:var(--text-muted);"><i class="fa-solid fa-gear"></i></div>
+                        <div class="guide-header-text">
+                            <h3>Settings & Customization</h3>
+                            <p>Toggle features on/off and customize the extension to your liking.</p>
+                        </div>
+                        <i class="fa-solid fa-chevron-down guide-chevron"></i>
+                    </button>
+                    <div class="guide-content">
+                        <div class="guide-steps">
+                            <div class="guide-step">
+                                <div class="guide-step-num"><i class="fa-solid fa-sliders"></i></div>
+                                <div class="guide-step-body">
+                                    <strong>Access settings via the popup</strong>
+                                    <p>Click the AQWikiTools icon in your toolbar. From the popup you can:</p>
+                                    <ul class="guide-list">
+                                        <li><strong>Toggle Dark Mode</strong> — Enable/disable wiki dark theme</li>
+                                        <li><strong>Toggle Image Previews</strong> — Turn hover previews on/off</li>
+                                        <li><strong>Character Page Settings</strong> — Control comparison features</li>
+                                        <li><strong>View Active Boosts</strong> — See current Gold, XP, Rep, and Class Point server boosts</li>
+                                        <li><strong>Check Sync Status</strong> — See when you last synced and how many items were detected</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="guide-note">
+                            <i class="fa-solid fa-circle-info"></i>
+                            <span>All your settings are saved locally in your browser. They persist across sessions — no account needed.</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider flip"></div>
+
     <!-- Trust & Safety -->
-    <section id="trust" class="section">
+    <section id="trust" class="section section-dark">
         <div class="container">
             <div class="section-header">
                 <span class="section-badge section-badge-green"><i class="fa-solid fa-shield-halved"></i> Safety</span>
@@ -436,6 +787,7 @@
 
                 <div class="footer-links">
                     <a href="https://github.com/R41CY/AQWikiTools" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+                    <a href="https://addons.mozilla.org/en-US/firefox/addon/aqwikitools/" target="_blank"><i class="fa-brands fa-firefox-browser"></i> Firefox Add-on</a>
                     <a href="https://www.aq.com/play-now/" target="_blank"><i class="fa-solid fa-gamepad"></i> Play AQW</a>
                 </div>
                 <div class="footer-bottom">
@@ -524,8 +876,8 @@
         document.addEventListener('keydown', e => { if (e.key === 'Escape' && !lb.hidden) closeLb(); });
 
         /* Reveal */
-        document.querySelectorAll('.feature-card, .trust-card').forEach((c, i) => { c.classList.add('reveal'); c.style.setProperty('--delay', i); });
-        document.querySelectorAll('.section-header, .wizard, .feature-filters, .trust-cta').forEach(el => el.classList.add('reveal'));
+        document.querySelectorAll('.feature-card, .trust-card, .guide-card').forEach((c, i) => { c.classList.add('reveal'); c.style.setProperty('--delay', i); });
+        document.querySelectorAll('.section-header, .wizard, .feature-filters, .trust-cta, .browser-picker').forEach(el => el.classList.add('reveal'));
         const rObs = new IntersectionObserver(es => { es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('revealed'); rObs.unobserve(e.target); } }); }, { threshold: 0.08 });
         document.querySelectorAll('.reveal').forEach(el => rObs.observe(el));
 
@@ -535,9 +887,24 @@
         const sObs = new IntersectionObserver(es => { es.forEach(e => { if (e.isIntersecting) { nAs.forEach(a => a.classList.remove('active')); const m = document.querySelector('.nav-links a[href="#' + e.target.id + '"]'); if (m) m.classList.add('active'); } }); }, { rootMargin: '-40% 0px -55% 0px' });
         secs.forEach(s => sObs.observe(s));
 
-        /* Wizard */
+        /* ── Browser Picker ── */
+        const tabChrome = document.getElementById('tab-chrome');
+        const tabFirefox = document.getElementById('tab-firefox');
+        const flowChrome = document.getElementById('install-chrome');
+        const flowFirefox = document.getElementById('install-firefox');
+
+        tabChrome.addEventListener('click', () => {
+            tabChrome.classList.add('active'); tabFirefox.classList.remove('active');
+            flowChrome.style.display = ''; flowFirefox.style.display = 'none';
+        });
+        tabFirefox.addEventListener('click', () => {
+            tabFirefox.classList.add('active'); tabChrome.classList.remove('active');
+            flowFirefox.style.display = ''; flowChrome.style.display = 'none';
+        });
+
+        /* ── Chrome Wizard ── */
         const total = 7; let cur = 0;
-        const dots = document.querySelectorAll('.wizard-dot'), wSteps = document.querySelectorAll('.wizard-step');
+        const dots = document.querySelectorAll('#wizard .wizard-dot'), wSteps = document.querySelectorAll('#wizard .wizard-step');
         const wBar = document.getElementById('wizard-bar'), pBtn = document.getElementById('wizard-prev'), nBtn = document.getElementById('wizard-next'), wCnt = document.getElementById('wizard-current');
 
         function goTo(n) {
@@ -551,7 +918,7 @@
             wCnt.textContent = cur + 1;
             pBtn.disabled = cur === 0;
             nBtn.innerHTML = cur === total - 1 ? '<i class="fa-solid fa-redo"></i> Restart' : 'Next <i class="fa-solid fa-arrow-right"></i>';
-            if (cur === total - 1) confetti();
+            if (cur === total - 1) confetti('wizard-confetti');
         }
 
         nBtn.addEventListener('click', () => { cur === total - 1 ? goTo(0) : goTo(cur + 1); });
@@ -562,11 +929,13 @@
             if (!lb.hidden) return;
             const w = document.getElementById('wizard'), r = w.getBoundingClientRect();
             if (r.top >= innerHeight || r.bottom <= 0) return;
-            if (e.key === 'ArrowRight' && cur < total - 1) goTo(cur + 1);
-            if (e.key === 'ArrowLeft' && cur > 0) goTo(cur - 1);
+            if (flowChrome.style.display !== 'none') {
+                if (e.key === 'ArrowRight' && cur < total - 1) goTo(cur + 1);
+                if (e.key === 'ArrowLeft' && cur > 0) goTo(cur - 1);
+            }
         });
 
-        /* Touch swipe for wizard */
+        /* Touch swipe for Chrome wizard */
         let touchX = 0;
         const wCard = document.getElementById('wizard-card');
         wCard.addEventListener('touchstart', e => { touchX = e.changedTouches[0].screenX; }, { passive: true });
@@ -578,8 +947,32 @@
         const ft = document.getElementById('fake-toggle'), fl = document.getElementById('fake-toggle-label');
         if (ft) ft.addEventListener('click', () => { ft.classList.toggle('on'); fl.textContent = ft.classList.contains('on') ? 'Developer Mode ON' : 'Click to try!'; });
 
-        function confetti() {
-            const c = document.getElementById('wizard-confetti'); if (!c) return; c.innerHTML = '';
+        /* ── Firefox Wizard ── */
+        const ffTotal = 3; let ffCur = 0;
+        const ffDots = document.querySelectorAll('#wizard-ff .wizard-dot'), ffSteps = document.querySelectorAll('#wizard-ff .wizard-step');
+        const ffBar = document.getElementById('wizard-bar-ff'), ffPrev = document.getElementById('wizard-prev-ff'), ffNext = document.getElementById('wizard-next-ff'), ffCnt = document.getElementById('wizard-current-ff');
+
+        function ffGoTo(n) {
+            ffSteps[ffCur].classList.remove('active');
+            ffSteps[ffCur].classList.add(n > ffCur ? 'exit-left' : 'exit-right');
+            ffCur = n;
+            ffSteps.forEach((s, i) => { if (i === ffCur) { s.classList.remove('exit-left', 'exit-right'); s.classList.add('active'); } });
+            setTimeout(() => { ffSteps.forEach((s, i) => { if (i !== ffCur) s.classList.remove('exit-left', 'exit-right', 'active'); }); }, 400);
+            ffDots.forEach((d, i) => { d.classList.toggle('active', i === ffCur); d.classList.toggle('done', i < ffCur); });
+            ffBar.style.width = ((ffCur / (ffTotal - 1)) * 100) + '%';
+            ffCnt.textContent = ffCur + 1;
+            ffPrev.disabled = ffCur === 0;
+            ffNext.innerHTML = ffCur === ffTotal - 1 ? '<i class="fa-solid fa-redo"></i> Restart' : 'Next <i class="fa-solid fa-arrow-right"></i>';
+            if (ffCur === ffTotal - 1) confetti('wizard-confetti-ff');
+        }
+
+        ffNext.addEventListener('click', () => { ffCur === ffTotal - 1 ? ffGoTo(0) : ffGoTo(ffCur + 1); });
+        ffPrev.addEventListener('click', () => { if (ffCur > 0) ffGoTo(ffCur - 1); });
+        ffDots.forEach(d => d.addEventListener('click', () => ffGoTo(+d.dataset.step)));
+
+        /* ── Confetti helper ── */
+        function confetti(id) {
+            const c = document.getElementById(id); if (!c) return; c.innerHTML = '';
             const cols = ['#ff6b6b', '#ffd93d', '#6bcb77', '#4d96ff', '#ff8585', '#d4a853'];
             for (let i = 0; i < 30; i++) {
                 const d = document.createElement('span'); d.className = 'confetti-dot';
@@ -592,10 +985,31 @@
             }
         }
 
+        /* ── Particles ── */
         const pEl = document.getElementById('hero-particles');
         if (pEl) { for (let i = 0; i < 20; i++) { const p = document.createElement('span'); p.className = 'particle';
             p.style.setProperty('--x', Math.random() * 100 + '%'); p.style.setProperty('--dur', (4 + Math.random() * 6) + 's');
             p.style.setProperty('--delay', (Math.random() * 5) + 's'); p.style.setProperty('--size', (2 + Math.random() * 3) + 'px'); pEl.appendChild(p); } }
+
+        /* ── Usage Guide Accordions ── */
+        document.querySelectorAll('.guide-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const card = header.closest('.guide-card');
+                const isOpen = card.classList.contains('guide-open');
+
+                // Close all others
+                document.querySelectorAll('.guide-card.guide-open').forEach(c => {
+                    if (c !== card) {
+                        c.classList.remove('guide-open');
+                        c.querySelector('.guide-header').setAttribute('aria-expanded', 'false');
+                    }
+                });
+
+                // Toggle current
+                card.classList.toggle('guide-open', !isOpen);
+                header.setAttribute('aria-expanded', !isOpen);
+            });
+        });
     })();
     </script>
 </body>
