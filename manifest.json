@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "AQWikiTools",
-    "version": "3.0.0",
+    "version": "3.0.1",
     "description": "Enhances the AQW Wiki and account pages with item previews, merge/quest calculators, inventory tracking, farm lists, and server boost alerts.",
     "permissions": ["storage"],
     "host_permissions": [

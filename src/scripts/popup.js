@@ -71,7 +71,7 @@ async function updateConfig() {
 const btnToFarm = document.getElementById("btn-tofarm");
 if (btnToFarm) {
     btnToFarm.addEventListener("click", () => {
-        chrome.tabs.create({ url: "src/pages/farm-tracker.html" });
+        chrome.tabs.create({ url: chrome.runtime.getURL("src/pages/farm-tracker.html") });
     });
 }
 
